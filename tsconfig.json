@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "moduleResolution": "node",
+        "module": "esnext",
+        "allowJs": false,
+        "strict": true,
+        "esModuleInterop": true,
+        "declaration": true,
+        "declarationDir": "./dist/",
+        "declarationMap": true,
+        "allowSyntheticDefaultImports": true,
+        "resolveJsonModule": true
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

@@ -4,15 +4,15 @@ This is a package for checking JavaScript projects. You only need to install thi
 
 # Purpose
 
--  Zero configuration
--  Keep project style the same
--  You don't have to worry about the details, just look at the final report
+- Zero configuration
+- Keep project style the same
+- You don't have to worry about the details, just look at the final report
 
 # Environment
 
 - Node.js >= 10.13.0
 
-#  Plug-ins
+# Plug-ins
 
 ### project-basic
 
@@ -29,12 +29,12 @@ This is a package for checking JavaScript projects. You only need to install thi
 - [VS Code Plug-in](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint#review-details)
 - [Rules in used](src/config/eslint_light.json)
 
-**Extra plug-ins:**  `react`, `jsdoc`
+**Extra plug-ins:** `react`, `jsdoc`
 
 ### Prettier
 
-- [Home Page]( https://prettier.io/docs/en/index.html )
-- [VS Code Plug-in]( https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode#review-details )
+- [Home Page](https://prettier.io/docs/en/index.html)
+- [VS Code Plug-in](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode#review-details)
 
 # CLI Options
 
@@ -63,7 +63,7 @@ This is a package for checking JavaScript projects. You only need to install thi
 - Add a script in `package.json`
 
   ```bash
-  "check":"x-code-inspect --disable-out"
+  "check":"x-code-inspect"
   ```
 
 - `npm run check`
@@ -71,4 +71,3 @@ This is a package for checking JavaScript projects. You only need to install thi
 # Change Log
 
 [CHANGELOG.md](CHANGELOG.md)
-

@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "a1f4899cc2a1973ab14b";
+/******/ 	var hotCurrentHash = "44453b9587f79de441a3";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -975,7 +975,6 @@ var package_version_Plugin = /*#__PURE__*/function () {
 
     _defineProperty(this, "result", {
       title: this.aliasName,
-      urlList: [],
       msgCount: 0,
       msgType: CheckerMessageTypeEnum.INFO
     });
@@ -1053,7 +1052,6 @@ var eslint_Plugin = /*#__PURE__*/function () {
 
     eslint_defineProperty(this, "result", {
       title: this.aliasName,
-      urlList: [],
       msgCount: 0,
       msgType: CheckerMessageTypeEnum.INFO
     });
@@ -1196,7 +1194,6 @@ var prettier_Plugin = /*#__PURE__*/function () {
 
     prettier_defineProperty(this, "result", {
       title: this.aliasName,
-      urlList: [],
       msgCount: 0,
       msgType: CheckerMessageTypeEnum.INFO
     });
@@ -1298,7 +1295,6 @@ var project_basic_Plugin = /*#__PURE__*/function () {
 
     project_basic_defineProperty(this, "result", {
       title: this.aliasName,
-      urlList: [],
       msgCount: 0,
       msgType: CheckerMessageTypeEnum.INFO
     });
@@ -1411,7 +1407,7 @@ var pluginNameStr = plugins.map(function (k) {
   return k.name;
 }).join(", ");
 external_commander_default.a.version(src_packageJson.version);
-external_commander_default.a.option('--debug', "Run as debug.", false).option('--path <type>', 'Project\'s path that you want to check.', "./").option('--check-dir <type>', 'Specify a directory to be scanned by code (e.g. by plug-ins such as eslint), the default is root value of --path. (multiple are separated by ,).', "").option('--ignore-check-dir <type>', 'Specify a directory to be no scanned by code (e.g. by plug-ins such as eslint), (multiple are separated by ,).', "").option('--ignore-plugin <type>', "Ignored plugin name list (multiple are separated by ,), all plugins are [".concat(pluginNameStr, "]."), "prettier").option("--enable-plugin <type>", "Enable plugin name list (multiple are separated by ,), all plugins are [".concat(pluginNameStr, "]."), "").option('--eslint-global <type>', 'Define global variate, see eslint doc.', "").option('--eslint-env <type>', 'The environment in which the code to be checked is running, see eslint doc.', "amd,browser,commonjs,commonjs,es6,node").parse(process.argv);
+external_commander_default.a.option('--debug', "Run as debug.", false).option('--path <type>', 'Project\'s path that you want to check.', "./").option('--check-dir <type>', 'Specify a directory to be scanned by code (e.g. by plug-ins such as eslint), the default is root value of --path. (multiple are separated by ,).', "").option('--ignore-check-dir <type>', 'Specify a directory to be no scanned by code (e.g. by plug-ins such as eslint), (multiple are separated by ,).', "").option('--ignore-plugin <type>', "Ignored plugin name list (multiple are separated by ,), all plugins are [".concat(pluginNameStr, "]."), "").option("--enable-plugin <type>", "Enable plugin name list (multiple are separated by ,), all plugins are [".concat(pluginNameStr, "]."), "").option('--eslint-global <type>', 'Define global variate, see eslint doc.', "").option('--eslint-env <type>', 'The environment in which the code to be checked is running, see eslint doc.', "amd,browser,commonjs,commonjs,es6,node").parse(process.argv);
 commandArgs.isDebug = external_commander_default.a.debug;
 commandArgs.codePath = external_path_default.a.resolve(external_commander_default.a.path);
 commandArgs.checkDir = external_commander_default.a.checkDir;

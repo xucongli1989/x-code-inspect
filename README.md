@@ -24,6 +24,10 @@ This is a package for checking JavaScript projects. You only need to install thi
 
 - `npm run check`
 
+# Preview
+
+![](doc/imgs/1.gif)
+
 # Environment
 
 - Node.js >= 10.13.0
@@ -76,7 +80,7 @@ Specify a directory to be no scanned by code (e.g. by plug-ins such as ESLint), 
 
 ##### --ignore-plugin
 
-Ignored plugin name list (multiple are separated by `,`), (default: "prettier")
+Ignored plugin name list (multiple are separated by `,`), (default: "")
 
 ##### --enable-plugin
 

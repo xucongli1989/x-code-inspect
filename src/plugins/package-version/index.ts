@@ -11,7 +11,6 @@ class Plugin implements BasePluginType {
     }
     result = {
         title: this.aliasName,
-        urlList: [],
         msgCount: 0,
         msgType: CheckerMessageTypeEnum.INFO
     } as CheckerResultType

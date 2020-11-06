@@ -29,7 +29,7 @@ class Plugin implements BasePluginType {
         const configPath = path.resolve(options.commandArgs.packagePath, "dist/config/.eslintrc.json")
         const ignoreConfigPath = path.resolve(options.commandArgs.packagePath, "dist/config/.eslintignore")
         const configObject = JSON.parse(fs.readFileSync(configPath).toString())
-        let ignoreConfig = fs.readFileSync(ignoreConfigPath).toString() + "\n"
+        const ignoreConfig = fs.readFileSync(ignoreConfigPath).toString() + "\n"
 
         //生成配置文件（eslintignore）
         const ignorePathSet: Set<string> = new Set()
@@ -49,7 +49,7 @@ class Plugin implements BasePluginType {
         Log.info("Updated file: ", projectIgnoreConfigPath, ignoreConfigStr)
 
         //生成配置文件（eslintrc.json）
-        let eslintConfig = { ...configObject }
+        const eslintConfig = { ...configObject }
         if (options.commandArgs.eslint_global) {
             options.commandArgs.eslint_global.split(',').forEach(k => {
                 eslintConfig.globals[k] = false
@@ -68,10 +68,10 @@ class Plugin implements BasePluginType {
         Log.info("Updated file: ", projectConfigPath)
 
         //开始运行检查
-        let checkCmd = `cd ${options.commandArgs.codePath} && eslint ${options.commandArgs.codePath} --no-eslintrc -c ${projectConfigPath} --ignore-path ${projectIgnoreConfigPath}  --resolve-plugins-relative-to ${options.commandArgs.packagePath} --max-warnings 0 `
+        const checkCmd = `cd ${options.commandArgs.codePath} && eslint ${options.commandArgs.codePath} --no-eslintrc -c ${projectConfigPath} --ignore-path ${projectIgnoreConfigPath}  --resolve-plugins-relative-to ${options.commandArgs.packagePath} --max-warnings 0 `
         Log.info("Executing command: ", checkCmd)
         const execResult = shell.exec(checkCmd, { silent: true })
-        let outStr: string = execResult.stdout
+        const outStr: string = execResult.stdout
         if (execResult.code != 0) {
             Log.error("Run eslint error, exit code :", execResult.code)
         }

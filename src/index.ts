@@ -45,7 +45,7 @@ commandArgs.eslint_env = commander.eslintEnv || defaultEnvList.join(",").toLower
 
 
 //配置处理
-let errorMsgList: string[] = [];
+const errorMsgList: string[] = [];
 (() => {
     (cfonts as any).say(packageJson.name, { font: "simple" })
     Log.info(`>>>>>>>>>>>>>>>>  Welcome to use ${packageJson.name} ${packageJson.version}<<<<<<<<<<<<<<<<<`)

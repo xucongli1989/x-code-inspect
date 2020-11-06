@@ -17,7 +17,7 @@ class Plugin implements BasePluginType {
     run(options: BasePluginOptionsType) {
         const cmd = `cd ${options.commandArgs.codePath} && x-package-version-strict-check`
         Log.info("Executing command: ", cmd)
-        let outStr: string = shell.exec(cmd, { silent: true }).stdout
+        const outStr: string = shell.exec(cmd, { silent: true }).stdout
 
         if (!outStr.includes("everything is ok")) {
             this.result.msgType = CheckerMessageTypeEnum.ERROR

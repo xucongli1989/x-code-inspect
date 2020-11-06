@@ -28,7 +28,7 @@ class Plugin implements BasePluginType {
         const configPath = path.resolve(options.commandArgs.packagePath, "dist/config/.prettierrc.json")
         const ignoreConfigPath = path.resolve(options.commandArgs.packagePath, "dist/config/.prettierignore")
         const configObject = JSON.parse(fs.readFileSync(configPath).toString())
-        let ignoreConfig = fs.readFileSync(ignoreConfigPath).toString() + "\n"
+        const ignoreConfig = fs.readFileSync(ignoreConfigPath).toString() + "\n"
 
         //组装cmd脚本命令
         const ignorePathSet: Set<string> = new Set()
@@ -56,7 +56,7 @@ class Plugin implements BasePluginType {
         //开始运行检查
         const cmd = `cd ${options.commandArgs.codePath} && prettier --check ./**/* --config ${projectConfigPath} --ignore-path ${projectIgnoreConfigPath} --no-editorconfig`
         Log.info("Executing command: ", cmd)
-        let execResult = shell.exec(cmd, { silent: true })
+        const execResult = shell.exec(cmd, { silent: true })
 
         if (execResult.code != 0) {
             const matchList = /^/gm.exec(execResult.stdout) || []

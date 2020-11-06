@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/xucongli1989/x-code-inspect",
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "4.6.1",
     "@typescript-eslint/parser": "4.6.1",
     "ansicolor": "1.1.93",
     "art-template": "4.13.2",

@@ -42,10 +42,6 @@ export interface CommandArgsType {
      */
     codePath: string;
     /**
-     * 项目名称
-     */
-    projectName: string;
-    /**
      * 需要忽略的插件名称
      */
     ignorePluginNameList: string[];

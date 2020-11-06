@@ -27,7 +27,6 @@ const pluginNameStr = plugins.map(k => k.name).join(", ")
 commander.version(packageJson.version)
 commander.option('--debug', "Run as debug.", false)
     .option('--path <type>', 'Project\'s path that you want to check.', "./")
-    .option('--project-name <type>', 'Name of project.', "")
     .option('--check-dir <type>', 'Specify a directory to be scanned by code (e.g. by plug-ins such as eslint), the default is root value of --path. (multiple are separated by ,).', "")
     .option('--ignore-check-dir <type>', 'Specify a directory to be no scanned by code (e.g. by plug-ins such as eslint), (multiple are separated by ,).', "")
     .option('--ignore-plugin <type>', `Ignored plugin name list (multiple are separated by ,), all plugins are [${pluginNameStr}].`, "prettier")
@@ -37,7 +36,6 @@ commander.option('--debug', "Run as debug.", false)
     .parse(process.argv)
 commandArgs.isDebug = commander.debug
 commandArgs.codePath = path.resolve(commander.path)
-commandArgs.projectName = commander.projectName
 commandArgs.checkDir = commander.checkDir
 commandArgs.ignoreCheckDir = commander.ignoreCheckDir
 commandArgs.ignorePluginNameList = commander.ignorePlugin ? commander.ignorePlugin.toLowerCase().split(',') : []

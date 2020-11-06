@@ -51,7 +51,11 @@ let errorMsgList: string[] = [];
     Log.info(`>>>>>>>>>>>>>>>>  Welcome to use ${packageJson.name} ${packageJson.version}<<<<<<<<<<<<<<<<<`)
 
     //检查更新
-    updateNotifier({ pkg: packageJson }).notify()
+    updateNotifier({
+        pkg: packageJson,
+        updateCheckInterval: 0,
+        shouldNotifyInNpmScript: true
+    }).notify()
 
     //打印当前命令
     Log.info("Executing command: ", process.argv.join(" "))

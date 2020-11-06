@@ -590,7 +590,9 @@ var errorMsgList = [];
   info(">>>>>>>>>>>>>>>>  Welcome to use ".concat(packageJson.name, " ").concat(packageJson.version, "<<<<<<<<<<<<<<<<<")); //检查更新
 
   external_update_notifier_default()({
-    pkg: packageJson
+    pkg: packageJson,
+    updateCheckInterval: 0,
+    shouldNotifyInNpmScript: true
   }).notify(); //打印当前命令
 
   info("Executing command: ", process.argv.join(" ")); //打印当前配置信息
@@ -807,7 +809,7 @@ module.exports = require("ololog");;
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => "393868818f9e2c8d4b76"
+/******/ 		__webpack_require__.h = () => "d53f911671f80959d818"
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */

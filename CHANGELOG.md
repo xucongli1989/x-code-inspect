@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.4](https://github.com/xucongli1989/x-code-inspect/compare/v1.0.3...v1.0.4) (2020-11-06)
+
+
+### Bug Fixes
+
+* add typescript support ([0d328b3](https://github.com/xucongli1989/x-code-inspect/commit/0d328b3c4186e2003aba7d2f464840991759275b))
+
 ### [1.0.3](https://github.com/xucongli1989/x-code-inspect/compare/v1.0.2...v1.0.3) (2020-11-06)
 
 

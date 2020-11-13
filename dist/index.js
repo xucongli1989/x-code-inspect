@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "b89c887343f5ce7aa5af";
+/******/ 	var hotCurrentHash = "e910e02fa7cf2daf349e";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1066,20 +1066,20 @@ var eslint_Plugin = /*#__PURE__*/function () {
       if (options.commandArgs.checkDir) {
         ignorePathSet.add("/*"); //先要排除所有
 
-        options.commandArgs.checkDir.split(',').forEach(function (x) {
+        options.commandArgs.checkDir.split(",").forEach(function (x) {
           ignorePathSet.add("!/".concat(x)); //基于上面排除的范围内，再剔除
         });
       }
 
       if (options.commandArgs.ignoreCheckDir) {
-        options.commandArgs.ignoreCheckDir.split(',').forEach(function (x) {
+        options.commandArgs.ignoreCheckDir.split(",").forEach(function (x) {
           ignorePathSet.add(x);
         });
       }
 
       var ignoreConfigStr = ignoreConfig + _toConsumableArray(ignorePathSet).map(function (x) {
         return "".concat(x, "\n");
-      }).join('');
+      }).join("");
 
       external_fs_default.a.writeFileSync(projectIgnoreConfigPath, ignoreConfigStr);
       info("Updated file: ", projectIgnoreConfigPath, ignoreConfigStr); //生成配置文件（eslintrc.json）
@@ -1087,13 +1087,13 @@ var eslint_Plugin = /*#__PURE__*/function () {
       var eslintConfig = _objectSpread({}, configObject);
 
       if (options.commandArgs.eslint_global) {
-        options.commandArgs.eslint_global.split(',').forEach(function (k) {
+        options.commandArgs.eslint_global.split(",").forEach(function (k) {
           eslintConfig.globals[k] = false;
         });
       }
 
       if (options.commandArgs.eslint_env) {
-        options.commandArgs.eslint_env.split(',').forEach(function (k) {
+        options.commandArgs.eslint_env.split(",").forEach(function (k) {
           eslintConfig.env[k] = true;
         });
       }
@@ -1106,10 +1106,10 @@ var eslint_Plugin = /*#__PURE__*/function () {
       external_fs_default.a.writeFileSync(projectConfigPath, eslintConfigStr);
       info("Updated file: ", projectConfigPath); //开始运行检查
 
-      var checkCmd = "cd ".concat(options.commandArgs.codePath, " && eslint ").concat(options.commandArgs.codePath, " --no-eslintrc -c ").concat(projectConfigPath, " --ignore-path ").concat(projectIgnoreConfigPath, "  --resolve-plugins-relative-to ").concat(options.commandArgs.packagePath, " --max-warnings 0 ");
+      var checkCmd = "cd ".concat(options.commandArgs.codePath, " && eslint ").concat(options.commandArgs.codePath, " --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ").concat(projectConfigPath, " --ignore-path ").concat(projectIgnoreConfigPath, "  --resolve-plugins-relative-to ").concat(options.commandArgs.packagePath, " --max-warnings 0 ");
       info("Executing command: ", checkCmd);
       var execResult = external_shelljs_default.a.exec(checkCmd, {
-        silent: true
+        silent: false
       });
       var outStr = execResult.stdout;
 

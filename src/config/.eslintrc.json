@@ -2,9 +2,9 @@
     "parser": "@typescript-eslint/parser",
     "env": {},
     "extends": [
-        "eslint-config-airbnb", 
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/eslint-recommended", 
+        "eslint:recommended",
+        "eslint-config-airbnb",
+        "eslint-config-airbnb/hooks",
         "plugin:@typescript-eslint/recommended", 
         "plugin:eslint-plugin-import/errors"
     ],
@@ -16,7 +16,6 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react",
         "@typescript-eslint"
     ],
     "rules": {
@@ -87,6 +86,7 @@
                 "ignoreRestSiblings": true
             }
         ],
+        "@typescript-eslint/explicit-module-boundary-types":"off",
         "no-confusing-arrow": "off",
         "no-self-compare": "off",
         "global-require": "off",

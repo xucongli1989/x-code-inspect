@@ -34,29 +34,29 @@ class Plugin implements BasePluginType {
         //生成配置文件（eslintignore）
         const ignorePathSet: Set<string> = new Set()
         if (options.commandArgs.checkDir) {
-            ignorePathSet.add(`/*`)//先要排除所有
-            options.commandArgs.checkDir.split(',').forEach(x => {
-                ignorePathSet.add(`!/${x}`)//基于上面排除的范围内，再剔除
+            ignorePathSet.add(`/*`) //先要排除所有
+            options.commandArgs.checkDir.split(",").forEach((x) => {
+                ignorePathSet.add(`!/${x}`) //基于上面排除的范围内，再剔除
             })
         }
         if (options.commandArgs.ignoreCheckDir) {
-            options.commandArgs.ignoreCheckDir.split(',').forEach(x => {
+            options.commandArgs.ignoreCheckDir.split(",").forEach((x) => {
                 ignorePathSet.add(x)
             })
         }
-        const ignoreConfigStr = ignoreConfig + [...ignorePathSet].map(x => `${x}\n`).join('')
+        const ignoreConfigStr = ignoreConfig + [...ignorePathSet].map((x) => `${x}\n`).join("")
         fs.writeFileSync(projectIgnoreConfigPath, ignoreConfigStr)
         Log.info("Updated file: ", projectIgnoreConfigPath, ignoreConfigStr)
 
         //生成配置文件（eslintrc.json）
         const eslintConfig = { ...configObject }
         if (options.commandArgs.eslint_global) {
-            options.commandArgs.eslint_global.split(',').forEach(k => {
+            options.commandArgs.eslint_global.split(",").forEach((k) => {
                 eslintConfig.globals[k] = false
             })
         }
         if (options.commandArgs.eslint_env) {
-            options.commandArgs.eslint_env.split(',').forEach(k => {
+            options.commandArgs.eslint_env.split(",").forEach((k) => {
                 eslintConfig.env[k] = true
             })
         }
@@ -68,9 +68,9 @@ class Plugin implements BasePluginType {
         Log.info("Updated file: ", projectConfigPath)
 
         //开始运行检查
-        const checkCmd = `cd ${options.commandArgs.codePath} && eslint ${options.commandArgs.codePath} --no-eslintrc -c ${projectConfigPath} --ignore-path ${projectIgnoreConfigPath}  --resolve-plugins-relative-to ${options.commandArgs.packagePath} --max-warnings 0 `
+        const checkCmd = `cd ${options.commandArgs.codePath} && eslint ${options.commandArgs.codePath} --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ${projectConfigPath} --ignore-path ${projectIgnoreConfigPath}  --resolve-plugins-relative-to ${options.commandArgs.packagePath} --max-warnings 0 `
         Log.info("Executing command: ", checkCmd)
-        const execResult = shell.exec(checkCmd, { silent: true })
+        const execResult = shell.exec(checkCmd, { silent: false })
         const outStr: string = execResult.stdout
         if (execResult.code != 0) {
             Log.error("Run eslint error, exit code :", execResult.code)

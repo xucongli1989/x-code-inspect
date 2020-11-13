@@ -92,4 +92,4 @@ class Plugin implements BasePluginType {
     }
 }
 
-export default <BasePluginType>new Plugin()
+export const EslintPlugin = new Plugin() as BasePluginType

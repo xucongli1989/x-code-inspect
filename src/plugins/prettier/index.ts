@@ -70,4 +70,4 @@ class Plugin implements BasePluginType {
     }
 }
 
-export default <BasePluginType>new Plugin()
+export const PrettierPlugin = new Plugin() as BasePluginType

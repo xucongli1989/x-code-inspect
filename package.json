@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dist": "x-package-version-strict-check && webpack  --mode=production --progress && tsc --emitDeclarationOnly",
-    "test": "node dist/index.js --path ./test",
+    "test": "node dist/index.js",
     "cli": "npm unlink x-code-inspect && npm link x-code-inspect",
     "check": "x-code-inspect",
     "release": "standard-version && git push && git push --tags",

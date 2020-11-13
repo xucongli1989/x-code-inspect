@@ -7,7 +7,7 @@ import cfonts from "cfonts"
 import AsTable from "as-table"
 import JsKit from "x-js-kit"
 import updateNotifier from "update-notifier"
-import plugins from "./plugins"
+import { plugins } from "./plugins"
 import { CommandArgsType, CheckerType, CheckerResultType, BasePluginType, CheckerEventNameEnum, CheckerMessageTypeEnum, EnvEnum } from "./type"
 import * as Log from "./log"
 
@@ -72,7 +72,6 @@ const errorMsgList: string[] = [];
     }
     if (!fs.existsSync(commandArgs.codePath)) {
         errorMsgList.push(`Code path [${commandArgs.codePath}] does not exist!`)
-        return
     }
 })()
 if (errorMsgList.length) {
@@ -85,12 +84,13 @@ class Checker extends EventEmitter implements CheckerType {
     pluginList: BasePluginType[] = []
     timeSpent = 0
     process() {
-        const sw = new JsKit.timer.stopWatch()
+        const sw = new JsKit.timer.StopWatch()
         const resultList: CheckerResultType[] = []
         //开始处理
         this.emit(CheckerEventNameEnum.START)
         sw.start()
-        this.pluginList.forEach(plugin => {
+        this.pluginList.forEach(p => {
+            const plugin = p
             //开始准备运行插件
             this.emit(CheckerEventNameEnum.ITEM_START, plugin.name)
             //运行插件
@@ -100,7 +100,7 @@ class Checker extends EventEmitter implements CheckerType {
                 this.emit(CheckerEventNameEnum.IGNORED)
             } else {
                 plugin.run({
-                    commandArgs: commandArgs
+                    commandArgs
                 })
                 resultList.push(plugin.result)
             }

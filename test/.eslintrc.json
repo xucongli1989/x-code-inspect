@@ -10,7 +10,6 @@
   "extends": [
     "eslint-config-airbnb",
     "plugin:react/recommended",
-    "plugin:jsdoc/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:eslint-plugin-import/errors"
@@ -24,7 +23,6 @@
   },
   "plugins": [
     "react",
-    "jsdoc",
     "@typescript-eslint"
   ],
   "rules": {

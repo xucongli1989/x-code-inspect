@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "a2ba3d13676da25dc226";
+/******/ 	var hotCurrentHash = "b89c887343f5ce7aa5af";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -872,43 +872,29 @@ var external_shelljs_ = __webpack_require__(3);
 var external_shelljs_default = /*#__PURE__*/__webpack_require__.n(external_shelljs_);
 
 // CONCATENATED MODULE: ./src/type.ts
-/**
- * 插件类型
- */
+/* eslint-disable no-use-before-define */
+
+/* eslint-disable camelcase */
 
 /**
- * 插件选项类型
+ * 待检查的代码所运行的环境枚举
  */
-
-/**
- * CLI选项类型
- */
-
-/**
- * 检查结果
- */
-
-/**
- * 主程序类型
- */
-
-/**
- * 错误类型枚举
- */
-var CheckerMessageTypeEnum;
+var EnvEnum;
 /**
  * 主程序事件名称枚举
  */
 
-(function (CheckerMessageTypeEnum) {
-  CheckerMessageTypeEnum["INFO"] = "INFO";
-  CheckerMessageTypeEnum["ERROR"] = "ERROR";
-  CheckerMessageTypeEnum["WARN"] = "WARN";
-})(CheckerMessageTypeEnum || (CheckerMessageTypeEnum = {}));
+(function (EnvEnum) {
+  EnvEnum["BROWSER"] = "BROWSER";
+  EnvEnum["NODE"] = "NODE";
+  EnvEnum["ES6"] = "ES6";
+  EnvEnum["AMD"] = "AMD";
+  EnvEnum["COMMONJS"] = "COMMONJS";
+})(EnvEnum || (EnvEnum = {}));
 
 var CheckerEventNameEnum;
 /**
- * 待检查的代码所运行的环境枚举
+ * 错误类型枚举
  */
 
 (function (CheckerEventNameEnum) {
@@ -920,16 +906,18 @@ var CheckerEventNameEnum;
   CheckerEventNameEnum["IGNORED"] = "IGNORED";
 })(CheckerEventNameEnum || (CheckerEventNameEnum = {}));
 
-var EnvEnum;
+var CheckerMessageTypeEnum;
+/**
+ * 插件类型
+ */
 
-(function (EnvEnum) {
-  EnvEnum["BROWSER"] = "BROWSER";
-  EnvEnum["NODE"] = "NODE";
-  EnvEnum["ES6"] = "ES6";
-  EnvEnum["AMD"] = "AMD";
-  EnvEnum["COMMONJS"] = "COMMONJS";
-})(EnvEnum || (EnvEnum = {}));
+(function (CheckerMessageTypeEnum) {
+  CheckerMessageTypeEnum["INFO"] = "INFO";
+  CheckerMessageTypeEnum["ERROR"] = "ERROR";
+  CheckerMessageTypeEnum["WARN"] = "WARN";
+})(CheckerMessageTypeEnum || (CheckerMessageTypeEnum = {}));
 // CONCATENATED MODULE: ./src/log.ts
+/* eslint-disable no-unused-expressions */
 __webpack_require__(10).nice;
 
 var log = __webpack_require__(11).configure({
@@ -1009,7 +997,7 @@ var package_version_Plugin = /*#__PURE__*/function () {
   return Plugin;
 }();
 
-/* harmony default export */ var package_version = (new package_version_Plugin());
+var PackageVersionPlugin = new package_version_Plugin();
 // CONCATENATED MODULE: ./src/plugins/eslint/index.ts
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -1156,7 +1144,7 @@ var eslint_Plugin = /*#__PURE__*/function () {
   return Plugin;
 }();
 
-/* harmony default export */ var eslint = (new eslint_Plugin());
+var EslintPlugin = new eslint_Plugin();
 // CONCATENATED MODULE: ./src/plugins/prettier/index.ts
 function prettier_toConsumableArray(arr) { return prettier_arrayWithoutHoles(arr) || prettier_iterableToArray(arr) || prettier_unsupportedIterableToArray(arr) || prettier_nonIterableSpread(); }
 
@@ -1270,7 +1258,7 @@ var prettier_Plugin = /*#__PURE__*/function () {
   return Plugin;
 }();
 
-/* harmony default export */ var prettier = (new prettier_Plugin());
+var PrettierPlugin = new prettier_Plugin();
 // CONCATENATED MODULE: ./src/plugins/project-basic/index.ts
 function project_basic_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1349,14 +1337,13 @@ var project_basic_Plugin = /*#__PURE__*/function () {
   return Plugin;
 }();
 
-/* harmony default export */ var project_basic = (new project_basic_Plugin());
+var ProjectBasicPlugin = new project_basic_Plugin();
 // CONCATENATED MODULE: ./src/plugins/index.ts
 
 
 
 
-var pluginList = [project_basic, package_version, eslint, prettier];
-/* harmony default export */ var plugins = (pluginList);
+var plugins = [ProjectBasicPlugin, PackageVersionPlugin, EslintPlugin, PrettierPlugin];
 // CONCATENATED MODULE: ./src/index.ts
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -1445,7 +1432,6 @@ var errorMsgList = [];
 
   if (!external_fs_default.a.existsSync(commandArgs.codePath)) {
     errorMsgList.push("Code path [".concat(commandArgs.codePath, "] does not exist!"));
-    return;
   }
 })();
 
@@ -1483,13 +1469,14 @@ var src_Checker = /*#__PURE__*/function (_EventEmitter) {
     value: function process() {
       var _this2 = this;
 
-      var sw = new external_x_js_kit_default.a.timer.stopWatch();
+      var sw = new external_x_js_kit_default.a.timer.StopWatch();
       var resultList = []; //开始处理
 
       this.emit(CheckerEventNameEnum.START);
       sw.start();
-      this.pluginList.forEach(function (plugin) {
-        //开始准备运行插件
+      this.pluginList.forEach(function (p) {
+        var plugin = p; //开始准备运行插件
+
         _this2.emit(CheckerEventNameEnum.ITEM_START, plugin.name); //运行插件
 
 

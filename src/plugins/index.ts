@@ -1,9 +1,7 @@
 import { BasePluginType } from "../type"
-import packageVersion from "./package-version"
-import eslint from "./eslint"
-import prettier from "./prettier"
-import projectBasic from "./project-basic"
+import { PackageVersionPlugin } from "./package-version"
+import { EslintPlugin } from "./eslint"
+import { PrettierPlugin } from "./prettier"
+import { ProjectBasicPlugin } from "./project-basic"
 
-const pluginList: BasePluginType[] = [projectBasic, packageVersion, eslint, prettier]
-
-export default pluginList
+export const plugins = [ProjectBasicPlugin, PackageVersionPlugin, EslintPlugin, PrettierPlugin] as BasePluginType[]

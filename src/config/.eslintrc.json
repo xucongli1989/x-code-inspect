@@ -4,7 +4,6 @@
     "extends": [
         "eslint-config-airbnb", 
         "plugin:react/recommended",
-        "plugin:jsdoc/recommended",
         "plugin:@typescript-eslint/eslint-recommended", 
         "plugin:@typescript-eslint/recommended", 
         "plugin:eslint-plugin-import/errors"
@@ -18,7 +17,6 @@
     },
     "plugins": [
         "react",
-        "jsdoc",
         "@typescript-eslint"
     ],
     "rules": {
@@ -97,7 +95,8 @@
         "object-curly-newline": "off",
         "no-alert": "off",
         "no-loop-func": "off",
-        "operator-linebreak": "off"
+        "operator-linebreak": "off",
+        "no-shadow": "off"
     },
     "overrides": [
         {

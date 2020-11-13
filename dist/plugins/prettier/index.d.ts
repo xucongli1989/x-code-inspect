@@ -1,4 +1,3 @@
 import { BasePluginType } from "../../type";
-declare const _default: BasePluginType;
-export default _default;
+export declare const PrettierPlugin: BasePluginType;
 //# sourceMappingURL=index.d.ts.map

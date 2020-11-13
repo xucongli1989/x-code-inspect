@@ -30,4 +30,4 @@ class Plugin implements BasePluginType {
     }
 }
 
-export default <BasePluginType>new Plugin()
+export const PackageVersionPlugin = new Plugin() as BasePluginType

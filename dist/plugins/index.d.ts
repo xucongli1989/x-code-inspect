@@ -1,4 +1,3 @@
 import { BasePluginType } from "../type";
-declare const pluginList: BasePluginType[];
-export default pluginList;
+export declare const plugins: BasePluginType[];
 //# sourceMappingURL=index.d.ts.map

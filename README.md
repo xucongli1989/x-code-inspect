@@ -47,7 +47,6 @@ This is a package for checking JavaScript projects. You only need to install thi
 
 - [Home Page](https://eslint.org/)
 - [VS Code Plug-in](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint#review-details)
-- [Rules in used](src/config/eslint_light.json)
 
 **Extra plug-ins:** `react`, `jsdoc`
 

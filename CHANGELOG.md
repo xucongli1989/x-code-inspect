@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/xucongli1989/x-code-inspect/compare/v1.1.0...v1.1.1) (2020-11-13)
+
+
+### Bug Fixes
+
+* remove jsdoc checker ([0d8b7e3](https://github.com/xucongli1989/x-code-inspect/commit/0d8b7e3d2a2d95618b6e9f83c29cdff36d0a3801))
+
 ## [1.1.0](https://github.com/xucongli1989/x-code-inspect/compare/v1.0.4...v1.1.0) (2020-11-13)
 
 

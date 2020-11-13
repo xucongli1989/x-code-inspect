@@ -10,8 +10,7 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:jsdoc/recommended"
+    "plugin:react/recommended"
   ],
   "globals": {
     "__webpack_public_path__": true
@@ -26,7 +25,6 @@
   },
   "plugins": [
     "react",
-    "jsdoc",
     "@typescript-eslint"
   ],
   "rules": {
@@ -116,32 +114,6 @@
     "react/no-unknown-property": 1,
     "react/react-in-jsx-scope": 1,
     "react/require-render-return": 2,
-    "jsdoc/check-alignment": 0,
-    "jsdoc/check-examples": 0,
-    "jsdoc/check-indentation": 0,
-    "jsdoc/check-param-names": 0,
-    "jsdoc/check-syntax": 0,
-    "jsdoc/check-tag-names": 0,
-    "jsdoc/check-types": 0,
-    "jsdoc/implements-on-classes": 0,
-    "jsdoc/match-description": 0,
-    "jsdoc/newline-after-description": 0,
-    "jsdoc/no-types": 0,
-    "jsdoc/no-undefined-types": 0,
-    "jsdoc/require-description": 0,
-    "jsdoc/require-description-complete-sentence": 0,
-    "jsdoc/require-example": 0,
-    "jsdoc/require-hyphen-before-param-description": 0,
-    "jsdoc/require-jsdoc": 0,
-    "jsdoc/require-param": 0,
-    "jsdoc/require-param-description": 0,
-    "jsdoc/require-param-name": 0,
-    "jsdoc/require-param-type": 0,
-    "jsdoc/require-returns": 0,
-    "jsdoc/require-returns-check": 0,
-    "jsdoc/require-returns-description": 0,
-    "jsdoc/require-returns-type": 0,
-    "jsdoc/valid-types": 0,
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/member-delimiter-style": "off",

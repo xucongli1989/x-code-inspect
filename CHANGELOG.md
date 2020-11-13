@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/xucongli1989/x-code-inspect/compare/v1.0.4...v1.1.0) (2020-11-13)
+
+
+### Features
+
+* use airbnb eslint rules ([2e3f82b](https://github.com/xucongli1989/x-code-inspect/commit/2e3f82b87806af261a80274fd637179fb96936ed))
+
 ### [1.0.4](https://github.com/xucongli1989/x-code-inspect/compare/v1.0.3...v1.0.4) (2020-11-06)
 
 

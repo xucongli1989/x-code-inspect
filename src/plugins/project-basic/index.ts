@@ -15,14 +15,17 @@ class Plugin implements BasePluginType {
         msgType: CheckerMessageTypeEnum.INFO
     } as CheckerResultType
     run(options: BasePluginOptionsType) {
-        //检查package.json文件（必须包含script.start,script.build）
+        //检查package.json文件（必须包含script.start,script.dist）
         const packageJsonPath = path.resolve(options.commandArgs.codePath, "package.json")
         if (fs.existsSync(packageJsonPath)) {
             const packageJson = JSON.parse(fs.readFileSync(packageJsonPath).toString())
-            if (!packageJson.scripts || !packageJson.scripts.start || !packageJson.scripts.build) {
+            if (!packageJson.scripts) {
+                packageJson.scripts = {}
+            }
+            if (!packageJson.scripts.start || !packageJson.scripts.dist) {
                 this.result.msgCount = 1
                 this.result.msgType = CheckerMessageTypeEnum.WARN
-                Log.warn("File package.json must include: script.start,script.build!")
+                Log.warn("File package.json must include: script.start,script.dist!")
             }
         }
         //检查目录结构（必须包含src,dist,doc）

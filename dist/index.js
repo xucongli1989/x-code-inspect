@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "e910e02fa7cf2daf349e";
+/******/ 	var hotCurrentHash = "9c72c6f41a28bee76518";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1291,16 +1291,20 @@ var project_basic_Plugin = /*#__PURE__*/function () {
   project_basic_createClass(Plugin, [{
     key: "run",
     value: function run(options) {
-      //检查package.json文件（必须包含script.start,script.build）
+      //检查package.json文件（必须包含script.start,script.dist）
       var packageJsonPath = external_path_default.a.resolve(options.commandArgs.codePath, "package.json");
 
       if (external_fs_default.a.existsSync(packageJsonPath)) {
         var packageJson = JSON.parse(external_fs_default.a.readFileSync(packageJsonPath).toString());
 
-        if (!packageJson.scripts || !packageJson.scripts.start || !packageJson.scripts.build) {
+        if (!packageJson.scripts) {
+          packageJson.scripts = {};
+        }
+
+        if (!packageJson.scripts.start || !packageJson.scripts.dist) {
           this.result.msgCount = 1;
           this.result.msgType = CheckerMessageTypeEnum.WARN;
-          warn("File package.json must include: script.start,script.build!");
+          warn("File package.json must include: script.start,script.dist!");
         }
       } //检查目录结构（必须包含src,dist,doc）
 

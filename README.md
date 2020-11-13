@@ -36,7 +36,7 @@ This is a package for checking JavaScript projects. You only need to install thi
 
 ### project-basic
 
-- File `package.json` must include: `script.start`, `script.build`
+- File `package.json` must include: `script.start`, `script.dist`
 - The project must contains directory: `src`, `dist`, `doc`
 
 ### x-package-version-strict-check

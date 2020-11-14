@@ -70,7 +70,7 @@ class Plugin implements BasePluginType {
         //开始运行检查
         const checkCmd = `cd ${options.commandArgs.codePath} && eslint ${options.commandArgs.codePath} --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ${projectConfigPath} --ignore-path ${projectIgnoreConfigPath}  --resolve-plugins-relative-to ${options.commandArgs.packagePath} --max-warnings 0 `
         Log.info("Executing command: ", checkCmd)
-        const execResult = shell.exec(checkCmd, { silent: false })
+        const execResult = shell.exec(checkCmd, { silent: false }) //silent为false时，eslint会打印日志，后面不需要自己单独打印
         const outStr: string = execResult.stdout
         if (execResult.code != 0) {
             Log.error("Run eslint error, exit code :", execResult.code)
@@ -83,7 +83,6 @@ class Plugin implements BasePluginType {
             if (matchList && matchList.length && matchList[1]) {
                 this.result.msgCount = JsKit.common.convert.toInt(matchList[1])
             }
-            Log.error(outStr)
             return
         }
         if (this.isSuccess) {

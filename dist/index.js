@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "9c72c6f41a28bee76518";
+/******/ 	var hotCurrentHash = "5cb7fae7ebe718831b61";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1110,7 +1110,8 @@ var eslint_Plugin = /*#__PURE__*/function () {
       info("Executing command: ", checkCmd);
       var execResult = external_shelljs_default.a.exec(checkCmd, {
         silent: false
-      });
+      }); //silent为false时，eslint会打印日志，后面不需要自己单独打印
+
       var outStr = execResult.stdout;
 
       if (execResult.code != 0) {
@@ -1126,7 +1127,6 @@ var eslint_Plugin = /*#__PURE__*/function () {
           this.result.msgCount = external_x_js_kit_default.a.common.convert.toInt(matchList[1]);
         }
 
-        error(outStr);
         return;
       }
 

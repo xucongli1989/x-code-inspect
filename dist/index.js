@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "5cb7fae7ebe718831b61";
+/******/ 	var hotCurrentHash = "13f3e8dc8e3365447e1d";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1115,6 +1115,7 @@ var eslint_Plugin = /*#__PURE__*/function () {
       var outStr = execResult.stdout;
 
       if (execResult.code != 0) {
+        this.result.msgType = CheckerMessageTypeEnum.ERROR;
         error("Run eslint error, exit code :", execResult.code);
       }
 

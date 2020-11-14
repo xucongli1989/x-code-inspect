@@ -73,6 +73,7 @@ class Plugin implements BasePluginType {
         const execResult = shell.exec(checkCmd, { silent: false }) //silent为false时，eslint会打印日志，后面不需要自己单独打印
         const outStr: string = execResult.stdout
         if (execResult.code != 0) {
+            this.result.msgType = CheckerMessageTypeEnum.ERROR
             Log.error("Run eslint error, exit code :", execResult.code)
         }
 

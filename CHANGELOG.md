@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.7](https://github.com/xucongli1989/x-code-inspect/compare/v1.1.6...v1.1.7) (2020-11-25)
+
+
+### Bug Fixes
+
+* update all packages ([5db4aa7](https://github.com/xucongli1989/x-code-inspect/commit/5db4aa701baa8fedd9b5e3f74e79a6ef3cf16c42))
+
 ### [1.1.6](https://github.com/xucongli1989/x-code-inspect/compare/v1.1.5...v1.1.6) (2020-11-14)
 
 

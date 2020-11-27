@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "06c1f3055df51b2dc5ab";
+/******/ 	var hotCurrentHash = "d8cdb66bf2ba170bbdc5";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -749,20 +749,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(12)(__webpack_require__.s = 12);
+/******/ 	return hotCreateRequire(13)(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports) {
 
-module.exports = require("fs");
+module.exports = require("path");
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = require("path");
+module.exports = require("fs");
 
 /***/ }),
 /* 2 */
@@ -774,58 +774,64 @@ module.exports = require("commander");
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("shelljs");
+module.exports = require("del");
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("x-js-kit");
+module.exports = require("shelljs");
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = require("events");
+module.exports = require("x-js-kit");
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = require("caller-path");
+module.exports = require("events");
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = require("cfonts");
+module.exports = require("caller-path");
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports) {
 
-module.exports = require("as-table");
+module.exports = require("cfonts");
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports) {
 
-module.exports = require("update-notifier");
+module.exports = require("as-table");
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = require("ansicolor");
+module.exports = require("update-notifier");
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = require("ololog");
+module.exports = require("ansicolor");
 
 /***/ }),
 /* 12 */
+/***/ (function(module, exports) {
+
+module.exports = require("ololog");
+
+/***/ }),
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -833,11 +839,11 @@ module.exports = require("ololog");
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: external "path"
-var external_path_ = __webpack_require__(1);
+var external_path_ = __webpack_require__(0);
 var external_path_default = /*#__PURE__*/__webpack_require__.n(external_path_);
 
 // EXTERNAL MODULE: external "fs"
-var external_fs_ = __webpack_require__(0);
+var external_fs_ = __webpack_require__(1);
 var external_fs_default = /*#__PURE__*/__webpack_require__.n(external_fs_);
 
 // EXTERNAL MODULE: external "commander"
@@ -845,30 +851,30 @@ var external_commander_ = __webpack_require__(2);
 var external_commander_default = /*#__PURE__*/__webpack_require__.n(external_commander_);
 
 // EXTERNAL MODULE: external "events"
-var external_events_ = __webpack_require__(5);
+var external_events_ = __webpack_require__(6);
 
 // EXTERNAL MODULE: external "caller-path"
-var external_caller_path_ = __webpack_require__(6);
+var external_caller_path_ = __webpack_require__(7);
 var external_caller_path_default = /*#__PURE__*/__webpack_require__.n(external_caller_path_);
 
 // EXTERNAL MODULE: external "cfonts"
-var external_cfonts_ = __webpack_require__(7);
+var external_cfonts_ = __webpack_require__(8);
 var external_cfonts_default = /*#__PURE__*/__webpack_require__.n(external_cfonts_);
 
 // EXTERNAL MODULE: external "as-table"
-var external_as_table_ = __webpack_require__(8);
+var external_as_table_ = __webpack_require__(9);
 var external_as_table_default = /*#__PURE__*/__webpack_require__.n(external_as_table_);
 
 // EXTERNAL MODULE: external "x-js-kit"
-var external_x_js_kit_ = __webpack_require__(4);
+var external_x_js_kit_ = __webpack_require__(5);
 var external_x_js_kit_default = /*#__PURE__*/__webpack_require__.n(external_x_js_kit_);
 
 // EXTERNAL MODULE: external "update-notifier"
-var external_update_notifier_ = __webpack_require__(9);
+var external_update_notifier_ = __webpack_require__(10);
 var external_update_notifier_default = /*#__PURE__*/__webpack_require__.n(external_update_notifier_);
 
 // EXTERNAL MODULE: external "shelljs"
-var external_shelljs_ = __webpack_require__(3);
+var external_shelljs_ = __webpack_require__(4);
 var external_shelljs_default = /*#__PURE__*/__webpack_require__.n(external_shelljs_);
 
 // CONCATENATED MODULE: ./src/type.ts
@@ -918,9 +924,9 @@ var CheckerMessageTypeEnum;
 })(CheckerMessageTypeEnum || (CheckerMessageTypeEnum = {}));
 // CONCATENATED MODULE: ./src/log.ts
 /* eslint-disable no-unused-expressions */
-__webpack_require__(10).nice;
+__webpack_require__(11).nice;
 
-var log = __webpack_require__(11).configure({
+var log = __webpack_require__(12).configure({
   tag: true,
   locate: false
 });
@@ -998,6 +1004,10 @@ var package_version_Plugin = /*#__PURE__*/function () {
 }();
 
 var PackageVersionPlugin = new package_version_Plugin();
+// EXTERNAL MODULE: external "del"
+var external_del_ = __webpack_require__(3);
+var external_del_default = /*#__PURE__*/__webpack_require__.n(external_del_);
+
 // CONCATENATED MODULE: ./src/plugins/eslint/index.ts
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -1030,6 +1040,7 @@ function eslint_defineProperty(obj, key, value) { if (key in obj) { Object.defin
 
 
 
+
 var eslint_Plugin = /*#__PURE__*/function () {
   function Plugin() {
     eslint_classCallCheck(this, Plugin);
@@ -1048,11 +1059,17 @@ var eslint_Plugin = /*#__PURE__*/function () {
   eslint_createClass(Plugin, [{
     key: "run",
     value: function run(options) {
-      //项目中已有的配置文件
-      var projectConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.json");
-      var projectIgnoreConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".eslintignore"); //清空项目中的已有配置文件
+      //删除项目中已有的eslint配置文件
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.js"));
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.json"));
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.yaml"));
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.yml"));
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc"));
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintignore"));
+      info("Clear project's config file about ESLint!"); //添加新的配置文件
 
-      info("Clear project's config file about ESLint!");
+      var projectConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.json");
+      var projectIgnoreConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".eslintignore");
       external_fs_default.a.writeFileSync(projectConfigPath, "");
       external_fs_default.a.writeFileSync(projectIgnoreConfigPath, ""); //默认的eslint配置文件
 

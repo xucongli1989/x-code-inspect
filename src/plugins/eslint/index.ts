@@ -2,6 +2,7 @@ import shell from "shelljs"
 import path from "path"
 import fs from "fs"
 import JsKit from "x-js-kit"
+import del from "del"
 import { BasePluginType, BasePluginOptionsType, CheckerResultType, CheckerMessageTypeEnum } from "../../type"
 import * as Log from "../../log"
 
@@ -17,11 +18,18 @@ class Plugin implements BasePluginType {
         msgType: CheckerMessageTypeEnum.INFO
     } as CheckerResultType
     run(options: BasePluginOptionsType) {
-        //项目中已有的配置文件
+        //删除项目中已有的eslint配置文件
+        del.sync(path.resolve(options.commandArgs.codePath, ".eslintrc.js"))
+        del.sync(path.resolve(options.commandArgs.codePath, ".eslintrc.json"))
+        del.sync(path.resolve(options.commandArgs.codePath, ".eslintrc.yaml"))
+        del.sync(path.resolve(options.commandArgs.codePath, ".eslintrc.yml"))
+        del.sync(path.resolve(options.commandArgs.codePath, ".eslintrc"))
+        del.sync(path.resolve(options.commandArgs.codePath, ".eslintignore"))
+        Log.info("Clear project's config file about ESLint!")
+
+        //添加新的配置文件
         const projectConfigPath = path.resolve(options.commandArgs.codePath, ".eslintrc.json")
         const projectIgnoreConfigPath = path.resolve(options.commandArgs.codePath, ".eslintignore")
-        //清空项目中的已有配置文件
-        Log.info("Clear project's config file about ESLint!")
         fs.writeFileSync(projectConfigPath, "")
         fs.writeFileSync(projectIgnoreConfigPath, "")
 

@@ -4,8 +4,8 @@
     "env": {},
     "extends": [
         "eslint:recommended",
-        "./node_modules/x-code-inspect/node_modules/eslint-config-airbnb",
-        "./node_modules/x-code-inspect/node_modules/eslint-config-airbnb/hooks",
+        "eslint-config-airbnb",
+        "eslint-config-airbnb/hooks",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:eslint-plugin-import/errors"

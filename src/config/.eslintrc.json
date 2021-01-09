@@ -107,7 +107,8 @@
         "no-loop-func": "off",
         "operator-linebreak": "off",
         "no-shadow": "off",
-        "no-use-before-define":"off"
+        "no-use-before-define":"off",
+        "no-param-reassign":"off"
     },
     "overrides": [
         {

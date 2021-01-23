@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.4](https://github.com/xucongli1989/x-code-inspect/compare/v1.2.3...v1.2.4) (2021-01-23)
+
+
+### Bug Fixes
+
+* add type check via typescript ([26094f6](https://github.com/xucongli1989/x-code-inspect/commit/26094f63c7325245bd74e69207a3c613029c739c))
+
 ### [1.2.3](https://github.com/xucongli1989/x-code-inspect/compare/v1.2.2...v1.2.3) (2021-01-23)
 
 

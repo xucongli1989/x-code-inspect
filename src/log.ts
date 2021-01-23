@@ -1,5 +1,5 @@
-/* eslint-disable no-unused-expressions */
-require('ansicolor').nice
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+require("ansicolor").nice
 const log = require("ololog").configure({ tag: true, locate: false })
 
 export function redStyle(str: string): any {

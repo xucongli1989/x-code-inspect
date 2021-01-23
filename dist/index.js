@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "d8cdb66bf2ba170bbdc5";
+/******/ 	var hotCurrentHash = "2b1f349b30bc62845544";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -923,7 +923,7 @@ var CheckerMessageTypeEnum;
   CheckerMessageTypeEnum["WARN"] = "WARN";
 })(CheckerMessageTypeEnum || (CheckerMessageTypeEnum = {}));
 // CONCATENATED MODULE: ./src/log.ts
-/* eslint-disable no-unused-expressions */
+// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 __webpack_require__(11).nice;
 
 var log = __webpack_require__(12).configure({

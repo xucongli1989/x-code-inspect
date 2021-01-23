@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "323eb7f182b7767e661b";
+/******/ 	var hotCurrentHash = "94971a6759f3700f3844";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -966,13 +966,12 @@ var package_version_Plugin = /*#__PURE__*/function () {
       var cmd = "cd ".concat(options.commandArgs.codePath, " && x-package-version-strict-check");
       info("Executing command: ", cmd);
       var outStr = external_shelljs_default.a.exec(cmd, {
-        silent: true
+        silent: false
       }).stdout;
 
       if (!outStr.includes("everything is ok")) {
         this.result.msgType = CheckerMessageTypeEnum.ERROR;
         this.result.msgCount = 1;
-        error(outStr);
       }
 
       if (this.isSuccess) {
@@ -1206,13 +1205,13 @@ var prettier_Plugin = /*#__PURE__*/function () {
       if (options.commandArgs.checkDir) {
         ignorePathSet.add("/*"); //先要排除所有
 
-        options.commandArgs.checkDir.split(',').forEach(function (x) {
+        options.commandArgs.checkDir.split(",").forEach(function (x) {
           ignorePathSet.add("!/".concat(x)); //基于上面排除的范围内，再剔除
         });
       }
 
       if (options.commandArgs.ignoreCheckDir) {
-        options.commandArgs.ignoreCheckDir.split(',').forEach(function (x) {
+        options.commandArgs.ignoreCheckDir.split(",").forEach(function (x) {
           ignorePathSet.add(x);
         });
       } //生成配置文件（prettierignore）
@@ -1220,7 +1219,7 @@ var prettier_Plugin = /*#__PURE__*/function () {
 
       var ignoreConfigStr = ignoreConfig + prettier_toConsumableArray(ignorePathSet).map(function (x) {
         return "".concat(x, "\n");
-      }).join('');
+      }).join("");
 
       external_fs_default.a.writeFileSync(projectIgnoreConfigPath, ignoreConfigStr);
       info("Updated file: ", projectIgnoreConfigPath, ignoreConfigStr); //生成配置文件（prettierrc）
@@ -1231,15 +1230,13 @@ var prettier_Plugin = /*#__PURE__*/function () {
       var cmd = "cd ".concat(options.commandArgs.codePath, " && prettier --check ./**/* --config ").concat(projectConfigPath, " --ignore-path ").concat(projectIgnoreConfigPath, " --no-editorconfig");
       info("Executing command: ", cmd);
       var execResult = external_shelljs_default.a.exec(cmd, {
-        silent: true
+        silent: false
       });
 
       if (execResult.code != 0) {
         var matchList = /^/gm.exec(execResult.stdout) || [];
         this.result.msgType = CheckerMessageTypeEnum.WARN;
         this.result.msgCount = matchList.length; //不准确，目前都为1
-
-        warn(execResult.stdout);
       }
 
       if (this.isSuccess) {

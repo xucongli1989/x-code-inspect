@@ -77,21 +77,9 @@ Specify a directory to be scanned by code (e.g. by plug-ins such as ESLint), the
 
 Specify a directory to be no scanned by code (e.g. by plug-ins such as ESLint), (multiple are separated by `,`). (default: "")
 
-##### --ignore-plugin
-
-Ignored plugin name list (multiple are separated by `,`), (default: "")
-
-##### --enable-plugin
-
-Enable plugin name list (multiple are separated by `,`), (default: "")
-
 ##### --eslint-global
 
 Define global variate, see ESLint's doc. (default: "")
-
-##### --eslint-env
-
-The environment in which the code to be checked is running, see ESLint's doc. (default: "amd, browser, commonjs, commonjs, es6, node")
 
 ##### -h, --help
 

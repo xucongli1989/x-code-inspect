@@ -63,11 +63,6 @@ class Plugin implements BasePluginType {
                 eslintConfig.globals[k] = false
             })
         }
-        if (options.commandArgs.eslint_env) {
-            options.commandArgs.eslint_env.split(",").forEach((k) => {
-                eslintConfig.env[k] = true
-            })
-        }
         if (options.commandArgs.isDebug) {
             Log.info(eslintConfig)
         }

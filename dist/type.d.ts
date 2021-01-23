@@ -1,14 +1,4 @@
 /**
- * 待检查的代码所运行的环境枚举
- */
-export declare enum EnvEnum {
-    BROWSER = "BROWSER",
-    NODE = "NODE",
-    ES6 = "ES6",
-    AMD = "AMD",
-    COMMONJS = "COMMONJS"
-}
-/**
  * 主程序事件名称枚举
  */
 export declare enum CheckerEventNameEnum {
@@ -31,11 +21,7 @@ export declare enum CheckerEventNameEnum {
     /**
      * 具体的某个插件处理完毕
      */
-    ITEM_END = "ITEM_END",
-    /**
-     * 忽略某个插件
-     */
-    IGNORED = "IGNORED"
+    ITEM_END = "ITEM_END"
 }
 /**
  * 错误类型枚举
@@ -89,14 +75,6 @@ export interface CommandArgsType {
      */
     codePath: string;
     /**
-     * 需要忽略的插件名称
-     */
-    ignorePluginNameList: string[];
-    /**
-     * 需要运行的插件名称
-     */
-    enablePluginNameList: string[];
-    /**
      * 当前执行文件所在的路径
      */
     execFileRootPath: string;
@@ -112,10 +90,6 @@ export interface CommandArgsType {
      * 指定一个不需要进行代码扫描的目录（如：被eslint等插件进行扫描）
      */
     ignoreCheckDir: string;
-    /**
-     * eslint cli 配置（--env）
-     */
-    eslint_env: string;
     /**
      * eslint cli 配置（--global）
      */

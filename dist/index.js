@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "2b1f349b30bc62845544";
+/******/ 	var hotCurrentHash = "e765c337ba7b3547f004";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -883,21 +883,8 @@ var external_shelljs_default = /*#__PURE__*/__webpack_require__.n(external_shell
 /* eslint-disable camelcase */
 
 /**
- * 待检查的代码所运行的环境枚举
- */
-var EnvEnum;
-/**
  * 主程序事件名称枚举
  */
-
-(function (EnvEnum) {
-  EnvEnum["BROWSER"] = "BROWSER";
-  EnvEnum["NODE"] = "NODE";
-  EnvEnum["ES6"] = "ES6";
-  EnvEnum["AMD"] = "AMD";
-  EnvEnum["COMMONJS"] = "COMMONJS";
-})(EnvEnum || (EnvEnum = {}));
-
 var CheckerEventNameEnum;
 /**
  * 错误类型枚举
@@ -909,7 +896,6 @@ var CheckerEventNameEnum;
   CheckerEventNameEnum["END"] = "END";
   CheckerEventNameEnum["RESULT"] = "RESULT";
   CheckerEventNameEnum["ITEM_END"] = "ITEM_END";
-  CheckerEventNameEnum["IGNORED"] = "IGNORED";
 })(CheckerEventNameEnum || (CheckerEventNameEnum = {}));
 
 var CheckerMessageTypeEnum;
@@ -1106,12 +1092,6 @@ var eslint_Plugin = /*#__PURE__*/function () {
       if (options.commandArgs.eslint_global) {
         options.commandArgs.eslint_global.split(",").forEach(function (k) {
           eslintConfig.globals[k] = false;
-        });
-      }
-
-      if (options.commandArgs.eslint_env) {
-        options.commandArgs.eslint_env.split(",").forEach(function (k) {
-          eslintConfig.env[k] = true;
         });
       }
 
@@ -1403,7 +1383,6 @@ function src_defineProperty(obj, key, value) { if (key in obj) { Object.definePr
 
 
 
-var defaultEnvList = [EnvEnum.AMD, EnvEnum.BROWSER, EnvEnum.COMMONJS, EnvEnum.COMMONJS, EnvEnum.ES6, EnvEnum.NODE];
 var commandArgs = {};
 commandArgs.execFileRootPath = external_caller_path_default()();
 commandArgs.packagePath = external_path_default.a.resolve(commandArgs.execFileRootPath, "../../"); //package.json
@@ -1412,24 +1391,19 @@ var src_packageJson = JSON.parse(external_fs_default.a.readFileSync(external_pat
 
 process.env.PATH = external_path_default.a.resolve(commandArgs.packagePath, "node_modules/.bin") + external_path_default.a.delimiter + process.env.PATH; //命令
 
-var pluginNameStr = plugins.map(function (k) {
-  return k.name;
-}).join(", ");
 external_commander_default.a.version(src_packageJson.version);
-external_commander_default.a.option('--debug', "Run as debug.", false).option('--path <type>', 'Project\'s path that you want to check.', "./").option('--check-dir <type>', 'Specify a directory to be scanned by code (e.g. by plug-ins such as eslint), the default is root value of --path. (multiple are separated by ,).', "").option('--ignore-check-dir <type>', 'Specify a directory to be no scanned by code (e.g. by plug-ins such as eslint), (multiple are separated by ,).', "").option('--ignore-plugin <type>', "Ignored plugin name list (multiple are separated by ,), all plugins are [".concat(pluginNameStr, "]."), "").option("--enable-plugin <type>", "Enable plugin name list (multiple are separated by ,), all plugins are [".concat(pluginNameStr, "]."), "").option('--eslint-global <type>', 'Define global variate, see eslint doc.', "").option('--eslint-env <type>', 'The environment in which the code to be checked is running, see eslint doc.', "amd,browser,commonjs,commonjs,es6,node").parse(process.argv);
+external_commander_default.a.option("--debug", "Run as debug.", false).option("--path <type>", "Project's path that you want to check.", "./").option("--check-dir <type>", "Specify a directory to be scanned by code (e.g. by plug-ins such as eslint), the default is root value of --path. (multiple are separated by ,).", "").option("--ignore-check-dir <type>", "Specify a directory to be no scanned by code (e.g. by plug-ins such as eslint), (multiple are separated by ,).", "").option("--eslint-global <type>", "Define global variate, see eslint doc.", "").parse(process.argv);
 commandArgs.isDebug = external_commander_default.a.debug;
 commandArgs.codePath = external_path_default.a.resolve(external_commander_default.a.path);
 commandArgs.checkDir = external_commander_default.a.checkDir;
 commandArgs.ignoreCheckDir = external_commander_default.a.ignoreCheckDir;
-commandArgs.ignorePluginNameList = external_commander_default.a.ignorePlugin ? external_commander_default.a.ignorePlugin.toLowerCase().split(',') : [];
-commandArgs.enablePluginNameList = external_commander_default.a.enablePlugin ? external_commander_default.a.enablePlugin.toLowerCase().split(',') : [];
-commandArgs.eslint_global = external_commander_default.a.eslintGlobal;
-commandArgs.eslint_env = external_commander_default.a.eslintEnv || defaultEnvList.join(",").toLowerCase(); //配置处理
+commandArgs.eslint_global = external_commander_default.a.eslintGlobal; //配置处理
 
 var errorMsgList = [];
 
-(function () {
-  external_cfonts_default.a.say(src_packageJson.name, {
+function initCheck() {
+  var fts = external_cfonts_default.a;
+  fts.say(src_packageJson.name, {
     font: "simple"
   });
   info(">>>>>>>>>>>>>>>>  Welcome to use ".concat(src_packageJson.name, " ").concat(src_packageJson.version, "<<<<<<<<<<<<<<<<<")); //检查更新
@@ -1455,7 +1429,9 @@ var errorMsgList = [];
   if (!external_fs_default.a.existsSync(commandArgs.codePath)) {
     errorMsgList.push("Code path [".concat(commandArgs.codePath, "] does not exist!"));
   }
-})();
+}
+
+initCheck();
 
 if (errorMsgList.length) {
   error(errorMsgList.join("\\n"));
@@ -1502,19 +1478,10 @@ var src_Checker = /*#__PURE__*/function (_EventEmitter) {
         _this2.emit(CheckerEventNameEnum.ITEM_START, plugin.name); //运行插件
 
 
-        var pLowerName = plugin.name.toLowerCase();
-
-        if (commandArgs.ignorePluginNameList.includes(pLowerName) || commandArgs.enablePluginNameList.length && !commandArgs.enablePluginNameList.includes(pLowerName)) {
-          plugin.result.msgType = CheckerMessageTypeEnum.INFO;
-
-          _this2.emit(CheckerEventNameEnum.IGNORED);
-        } else {
-          plugin.run({
-            commandArgs: commandArgs
-          });
-          resultList.push(plugin.result);
-        } //插件运行结束
-
+        plugin.run({
+          commandArgs: commandArgs
+        });
+        resultList.push(plugin.result); //插件运行结束
 
         _this2.emit(CheckerEventNameEnum.ITEM_END, plugin);
       });
@@ -1554,9 +1521,6 @@ checker.on(CheckerEventNameEnum.ITEM_END, function (plugin) {
   } else {
     error("Plugin execute [".concat(plugin.name, "] Failed!"));
   }
-});
-checker.on(CheckerEventNameEnum.IGNORED, function () {
-  info("This plugin has been ignored");
 });
 checker.process();
 

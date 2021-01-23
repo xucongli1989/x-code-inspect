@@ -8,10 +8,9 @@ import AsTable from "as-table"
 import JsKit from "x-js-kit"
 import updateNotifier from "update-notifier"
 import { plugins } from "./plugins"
-import { CommandArgsType, CheckerType, CheckerResultType, BasePluginType, CheckerEventNameEnum, CheckerMessageTypeEnum, EnvEnum } from "./type"
+import { CommandArgsType, CheckerType, CheckerResultType, BasePluginType, CheckerEventNameEnum } from "./type"
 import * as Log from "./log"
 
-const defaultEnvList = [EnvEnum.AMD, EnvEnum.BROWSER, EnvEnum.COMMONJS, EnvEnum.COMMONJS, EnvEnum.ES6, EnvEnum.NODE]
 const commandArgs: CommandArgsType = {} as any
 commandArgs.execFileRootPath = (callerPath as any)()
 commandArgs.packagePath = path.resolve(commandArgs.execFileRootPath, "../../")
@@ -23,31 +22,25 @@ const packageJson = JSON.parse(fs.readFileSync(path.resolve(commandArgs.packageP
 process.env.PATH = path.resolve(commandArgs.packagePath, "node_modules/.bin") + path.delimiter + process.env.PATH
 
 //命令
-const pluginNameStr = plugins.map(k => k.name).join(", ")
 commander.version(packageJson.version)
-commander.option('--debug', "Run as debug.", false)
-    .option('--path <type>', 'Project\'s path that you want to check.', "./")
-    .option('--check-dir <type>', 'Specify a directory to be scanned by code (e.g. by plug-ins such as eslint), the default is root value of --path. (multiple are separated by ,).', "")
-    .option('--ignore-check-dir <type>', 'Specify a directory to be no scanned by code (e.g. by plug-ins such as eslint), (multiple are separated by ,).', "")
-    .option('--ignore-plugin <type>', `Ignored plugin name list (multiple are separated by ,), all plugins are [${pluginNameStr}].`, "")
-    .option("--enable-plugin <type>", `Enable plugin name list (multiple are separated by ,), all plugins are [${pluginNameStr}].`, "")
-    .option('--eslint-global <type>', 'Define global variate, see eslint doc.', "")
-    .option('--eslint-env <type>', 'The environment in which the code to be checked is running, see eslint doc.', "amd,browser,commonjs,commonjs,es6,node")
+commander
+    .option("--debug", "Run as debug.", false)
+    .option("--path <type>", "Project's path that you want to check.", "./")
+    .option("--check-dir <type>", "Specify a directory to be scanned by code (e.g. by plug-ins such as eslint), the default is root value of --path. (multiple are separated by ,).", "")
+    .option("--ignore-check-dir <type>", "Specify a directory to be no scanned by code (e.g. by plug-ins such as eslint), (multiple are separated by ,).", "")
+    .option("--eslint-global <type>", "Define global variate, see eslint doc.", "")
     .parse(process.argv)
 commandArgs.isDebug = commander.debug
 commandArgs.codePath = path.resolve(commander.path)
 commandArgs.checkDir = commander.checkDir
 commandArgs.ignoreCheckDir = commander.ignoreCheckDir
-commandArgs.ignorePluginNameList = commander.ignorePlugin ? commander.ignorePlugin.toLowerCase().split(',') : []
-commandArgs.enablePluginNameList = commander.enablePlugin ? commander.enablePlugin.toLowerCase().split(',') : []
 commandArgs.eslint_global = commander.eslintGlobal
-commandArgs.eslint_env = commander.eslintEnv || defaultEnvList.join(",").toLowerCase()
-
 
 //配置处理
-const errorMsgList: string[] = [];
-(() => {
-    (cfonts as any).say(packageJson.name, { font: "simple" })
+const errorMsgList: string[] = []
+function initCheck() {
+    const fts = cfonts as any
+    fts.say(packageJson.name, { font: "simple" })
     Log.info(`>>>>>>>>>>>>>>>>  Welcome to use ${packageJson.name} ${packageJson.version}<<<<<<<<<<<<<<<<<`)
 
     //检查更新
@@ -73,7 +66,8 @@ const errorMsgList: string[] = [];
     if (!fs.existsSync(commandArgs.codePath)) {
         errorMsgList.push(`Code path [${commandArgs.codePath}] does not exist!`)
     }
-})()
+}
+initCheck()
 if (errorMsgList.length) {
     Log.error(errorMsgList.join("\\n"))
     process.exit(1)
@@ -89,33 +83,29 @@ class Checker extends EventEmitter implements CheckerType {
         //开始处理
         this.emit(CheckerEventNameEnum.START)
         sw.start()
-        this.pluginList.forEach(p => {
+        this.pluginList.forEach((p) => {
             const plugin = p
             //开始准备运行插件
             this.emit(CheckerEventNameEnum.ITEM_START, plugin.name)
             //运行插件
-            const pLowerName = plugin.name.toLowerCase()
-            if (commandArgs.ignorePluginNameList.includes(pLowerName) || (commandArgs.enablePluginNameList.length && !commandArgs.enablePluginNameList.includes(pLowerName))) {
-                plugin.result.msgType = CheckerMessageTypeEnum.INFO
-                this.emit(CheckerEventNameEnum.IGNORED)
-            } else {
-                plugin.run({
-                    commandArgs
-                })
-                resultList.push(plugin.result)
-            }
+            plugin.run({
+                commandArgs
+            })
+            resultList.push(plugin.result)
             //插件运行结束
             this.emit(CheckerEventNameEnum.ITEM_END, plugin)
         })
         sw.stop()
         this.timeSpent = sw.value / 1000
         this.emit(CheckerEventNameEnum.RESULT, resultList)
-        this.emit(CheckerEventNameEnum.END, this.pluginList.every(k => k.isSuccess))
+        this.emit(
+            CheckerEventNameEnum.END,
+            this.pluginList.every((k) => k.isSuccess)
+        )
     }
 }
 const checker = new Checker()
 checker.pluginList = plugins
-
 
 checker.on(CheckerEventNameEnum.START, () => {
     Log.info("Start code checking...")
@@ -142,10 +132,6 @@ checker.on(CheckerEventNameEnum.ITEM_END, (plugin: BasePluginType) => {
     } else {
         Log.error(`Plugin execute [${plugin.name}] Failed!`)
     }
-})
-
-checker.on(CheckerEventNameEnum.IGNORED, () => {
-    Log.info(`This plugin has been ignored`)
 })
 
 checker.process()

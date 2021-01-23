@@ -55,6 +55,10 @@ This is a package for checking JavaScript projects. You only need to install thi
 - [Home Page](https://prettier.io/docs/en/index.html)
 - [VS Code Plug-in](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode#review-details)
 
+### Type Check
+
+Via TypeScript
+
 # CLI Options
 
 ##### -V, --version

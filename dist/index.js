@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "e765c337ba7b3547f004";
+/******/ 	var hotCurrentHash = "323eb7f182b7767e661b";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -768,19 +768,19 @@ module.exports = require("fs");
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("commander");
+module.exports = require("shelljs");
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("del");
+module.exports = require("commander");
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("shelljs");
+module.exports = require("del");
 
 /***/ }),
 /* 5 */
@@ -847,7 +847,7 @@ var external_fs_ = __webpack_require__(1);
 var external_fs_default = /*#__PURE__*/__webpack_require__.n(external_fs_);
 
 // EXTERNAL MODULE: external "commander"
-var external_commander_ = __webpack_require__(2);
+var external_commander_ = __webpack_require__(3);
 var external_commander_default = /*#__PURE__*/__webpack_require__.n(external_commander_);
 
 // EXTERNAL MODULE: external "events"
@@ -874,7 +874,7 @@ var external_update_notifier_ = __webpack_require__(10);
 var external_update_notifier_default = /*#__PURE__*/__webpack_require__.n(external_update_notifier_);
 
 // EXTERNAL MODULE: external "shelljs"
-var external_shelljs_ = __webpack_require__(4);
+var external_shelljs_ = __webpack_require__(2);
 var external_shelljs_default = /*#__PURE__*/__webpack_require__.n(external_shelljs_);
 
 // CONCATENATED MODULE: ./src/type.ts
@@ -991,7 +991,7 @@ var package_version_Plugin = /*#__PURE__*/function () {
 
 var PackageVersionPlugin = new package_version_Plugin();
 // EXTERNAL MODULE: external "del"
-var external_del_ = __webpack_require__(3);
+var external_del_ = __webpack_require__(4);
 var external_del_default = /*#__PURE__*/__webpack_require__.n(external_del_);
 
 // CONCATENATED MODULE: ./src/plugins/eslint/index.ts
@@ -1340,12 +1340,72 @@ var project_basic_Plugin = /*#__PURE__*/function () {
 }();
 
 var ProjectBasicPlugin = new project_basic_Plugin();
+// CONCATENATED MODULE: ./src/plugins/type-check/index.ts
+function type_check_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function type_check_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function type_check_createClass(Constructor, protoProps, staticProps) { if (protoProps) type_check_defineProperties(Constructor.prototype, protoProps); if (staticProps) type_check_defineProperties(Constructor, staticProps); return Constructor; }
+
+function type_check_defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+var type_check_Plugin = /*#__PURE__*/function () {
+  function Plugin() {
+    type_check_classCallCheck(this, Plugin);
+
+    type_check_defineProperty(this, "name", "type-check");
+
+    type_check_defineProperty(this, "aliasName", "TypeScript Type Check");
+
+    type_check_defineProperty(this, "result", {
+      title: this.aliasName,
+      msgCount: 0,
+      msgType: CheckerMessageTypeEnum.INFO
+    });
+  }
+
+  type_check_createClass(Plugin, [{
+    key: "run",
+    value: function run(options) {
+      //开始运行检查
+      var cmd = "cd ".concat(options.commandArgs.codePath, " && tsc --noEmit");
+      info("Executing command: ", cmd);
+      var execResult = external_shelljs_default.a.exec(cmd, {
+        silent: false
+      });
+
+      if (execResult.code != 0) {
+        this.result.msgType = CheckerMessageTypeEnum.ERROR;
+        this.result.msgCount = 1;
+        error("Run type-check error, exit code :", execResult.code);
+      }
+
+      if (this.isSuccess) {
+        info("OK!");
+      }
+    }
+  }, {
+    key: "isSuccess",
+    get: function get() {
+      return this.result.msgType != CheckerMessageTypeEnum.ERROR;
+    }
+  }]);
+
+  return Plugin;
+}();
+
+var TypeCheckPlugin = new type_check_Plugin();
 // CONCATENATED MODULE: ./src/plugins/index.ts
 
 
 
 
-var plugins = [ProjectBasicPlugin, PackageVersionPlugin, EslintPlugin, PrettierPlugin];
+
+var plugins = [ProjectBasicPlugin, PackageVersionPlugin, EslintPlugin, PrettierPlugin, TypeCheckPlugin];
 // CONCATENATED MODULE: ./src/index.ts
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 

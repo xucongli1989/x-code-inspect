@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "9aa7ee9cbdc961ae60e2";
+/******/ 	var hotCurrentHash = "0c09215584760addceb2";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1051,10 +1051,7 @@ var eslint_Plugin = /*#__PURE__*/function () {
       external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.yml"));
       external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc"));
       external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintignore"));
-      info("Clear project's config file about ESLint!"); //项目的tsconfig配置文件
-
-      var projectTSConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, "tsconfig.json");
-      var isExistProjectTSConfigPath = external_fs_default.a.existsSync(projectTSConfigPath); //添加新的配置文件
+      info("Clear project's config file about ESLint!"); //添加新的配置文件
 
       var projectConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.json");
       var projectIgnoreConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".eslintignore");
@@ -1064,9 +1061,7 @@ var eslint_Plugin = /*#__PURE__*/function () {
       var configPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/.eslintrc.json");
       var ignoreConfigPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/.eslintignore");
       var configObject = JSON.parse(external_fs_default.a.readFileSync(configPath).toString());
-      var ignoreConfig = external_fs_default.a.readFileSync(ignoreConfigPath).toString() + "\n"; //默认的tsconfig
-
-      var defaultTSConfigPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/tsconfig.json"); //生成配置文件（eslintignore）
+      var ignoreConfig = external_fs_default.a.readFileSync(ignoreConfigPath).toString() + "\n"; //生成配置文件（eslintignore）
 
       var ignorePathSet = new Set();
 
@@ -1097,12 +1092,6 @@ var eslint_Plugin = /*#__PURE__*/function () {
         options.commandArgs.eslint_global.split(",").forEach(function (k) {
           eslintConfig.globals[k] = false;
         });
-      }
-
-      if (isExistProjectTSConfigPath) {
-        eslintConfig.parserOptions.project = projectTSConfigPath;
-      } else {
-        eslintConfig.parserOptions.project = defaultTSConfigPath;
       }
 
       if (options.commandArgs.isDebug) {

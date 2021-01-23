@@ -17,7 +17,7 @@
     "__webpack_public_path__": true
   },
   "parserOptions": {
-    "project": "D:\\MyData\\GitHub\\x-code-inspect\\tsconfig.json"
+    "project": "./tsconfig.json"
   },
   "plugins": [
     "@typescript-eslint"

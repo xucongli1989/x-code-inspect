@@ -27,6 +27,10 @@ class Plugin implements BasePluginType {
         del.sync(path.resolve(options.commandArgs.codePath, ".eslintignore"))
         Log.info("Clear project's config file about ESLint!")
 
+        //项目的tsconfig配置文件
+        const projectTSConfigPath = path.resolve(options.commandArgs.codePath, "tsconfig.json")
+        const isExistProjectTSConfigPath = fs.existsSync(projectTSConfigPath)
+
         //添加新的配置文件
         const projectConfigPath = path.resolve(options.commandArgs.codePath, ".eslintrc.json")
         const projectIgnoreConfigPath = path.resolve(options.commandArgs.codePath, ".eslintignore")
@@ -38,6 +42,9 @@ class Plugin implements BasePluginType {
         const ignoreConfigPath = path.resolve(options.commandArgs.packagePath, "dist/config/.eslintignore")
         const configObject = JSON.parse(fs.readFileSync(configPath).toString())
         const ignoreConfig = fs.readFileSync(ignoreConfigPath).toString() + "\n"
+
+        //默认的tsconfig
+        const defaultTSConfigPath = path.resolve(options.commandArgs.packagePath, "dist/config/tsconfig.json")
 
         //生成配置文件（eslintignore）
         const ignorePathSet: Set<string> = new Set()
@@ -63,6 +70,11 @@ class Plugin implements BasePluginType {
                 eslintConfig.globals[k] = false
             })
         }
+        if (isExistProjectTSConfigPath) {
+            eslintConfig.parserOptions.project = projectTSConfigPath
+        } else {
+            eslintConfig.parserOptions.project = defaultTSConfigPath
+        }
         if (options.commandArgs.isDebug) {
             Log.info(eslintConfig)
         }
@@ -71,9 +83,9 @@ class Plugin implements BasePluginType {
         Log.info("Updated file: ", projectConfigPath)
 
         //开始运行检查
-        const checkCmd = `cd ${options.commandArgs.codePath} && eslint ${options.commandArgs.codePath} --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ${projectConfigPath} --ignore-path ${projectIgnoreConfigPath}  --resolve-plugins-relative-to ${options.commandArgs.packagePath} --max-warnings 0 `
+        const checkCmd = `cd ${options.commandArgs.codePath} && eslint ${options.commandArgs.codePath} --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ${projectConfigPath} --ignore-path ${projectIgnoreConfigPath} --max-warnings 0 `
         Log.info("Executing command: ", checkCmd)
-        const execResult = shell.exec(checkCmd, { silent: false }) //silent为false时，eslint会打印日志，后面不需要自己单独打印
+        const execResult = shell.exec(checkCmd, { silent: false })
         const outStr: string = execResult.stdout
         if (execResult.code != 0) {
             this.result.msgType = CheckerMessageTypeEnum.ERROR

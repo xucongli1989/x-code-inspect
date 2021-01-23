@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "94971a6759f3700f3844";
+/******/ 	var hotCurrentHash = "9aa7ee9cbdc961ae60e2";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1051,7 +1051,10 @@ var eslint_Plugin = /*#__PURE__*/function () {
       external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.yml"));
       external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc"));
       external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintignore"));
-      info("Clear project's config file about ESLint!"); //添加新的配置文件
+      info("Clear project's config file about ESLint!"); //项目的tsconfig配置文件
+
+      var projectTSConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, "tsconfig.json");
+      var isExistProjectTSConfigPath = external_fs_default.a.existsSync(projectTSConfigPath); //添加新的配置文件
 
       var projectConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.json");
       var projectIgnoreConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".eslintignore");
@@ -1061,7 +1064,9 @@ var eslint_Plugin = /*#__PURE__*/function () {
       var configPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/.eslintrc.json");
       var ignoreConfigPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/.eslintignore");
       var configObject = JSON.parse(external_fs_default.a.readFileSync(configPath).toString());
-      var ignoreConfig = external_fs_default.a.readFileSync(ignoreConfigPath).toString() + "\n"; //生成配置文件（eslintignore）
+      var ignoreConfig = external_fs_default.a.readFileSync(ignoreConfigPath).toString() + "\n"; //默认的tsconfig
+
+      var defaultTSConfigPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/tsconfig.json"); //生成配置文件（eslintignore）
 
       var ignorePathSet = new Set();
 
@@ -1094,6 +1099,12 @@ var eslint_Plugin = /*#__PURE__*/function () {
         });
       }
 
+      if (isExistProjectTSConfigPath) {
+        eslintConfig.parserOptions.project = projectTSConfigPath;
+      } else {
+        eslintConfig.parserOptions.project = defaultTSConfigPath;
+      }
+
       if (options.commandArgs.isDebug) {
         info(eslintConfig);
       }
@@ -1102,12 +1113,11 @@ var eslint_Plugin = /*#__PURE__*/function () {
       external_fs_default.a.writeFileSync(projectConfigPath, eslintConfigStr);
       info("Updated file: ", projectConfigPath); //开始运行检查
 
-      var checkCmd = "cd ".concat(options.commandArgs.codePath, " && eslint ").concat(options.commandArgs.codePath, " --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ").concat(projectConfigPath, " --ignore-path ").concat(projectIgnoreConfigPath, "  --resolve-plugins-relative-to ").concat(options.commandArgs.packagePath, " --max-warnings 0 ");
+      var checkCmd = "cd ".concat(options.commandArgs.codePath, " && eslint ").concat(options.commandArgs.codePath, " --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ").concat(projectConfigPath, " --ignore-path ").concat(projectIgnoreConfigPath, " --max-warnings 0 ");
       info("Executing command: ", checkCmd);
       var execResult = external_shelljs_default.a.exec(checkCmd, {
         silent: false
-      }); //silent为false时，eslint会打印日志，后面不需要自己单独打印
-
+      });
       var outStr = execResult.stdout;
 
       if (execResult.code != 0) {
@@ -1406,6 +1416,12 @@ var plugins = [ProjectBasicPlugin, PackageVersionPlugin, EslintPlugin, PrettierP
 // CONCATENATED MODULE: ./src/index.ts
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = src_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function src_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return src_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return src_arrayLikeToArray(o, minLen); }
+
+function src_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 function src_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function src_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1522,26 +1538,38 @@ var src_Checker = /*#__PURE__*/function (_EventEmitter) {
   src_createClass(Checker, [{
     key: "process",
     value: function process() {
-      var _this2 = this;
-
       var sw = new external_x_js_kit_default.a.timer.StopWatch();
       var resultList = []; //开始处理
 
       this.emit(CheckerEventNameEnum.START);
       sw.start();
-      this.pluginList.forEach(function (p) {
-        var plugin = p; //开始准备运行插件
 
-        _this2.emit(CheckerEventNameEnum.ITEM_START, plugin.name); //运行插件
+      var _iterator = _createForOfIteratorHelper(this.pluginList),
+          _step;
 
+      try {
+        for (_iterator.s(); !(_step = _iterator.n()).done;) {
+          var plugin = _step.value;
+          //开始准备运行插件
+          this.emit(CheckerEventNameEnum.ITEM_START, plugin.name); //运行插件
 
-        plugin.run({
-          commandArgs: commandArgs
-        });
-        resultList.push(plugin.result); //插件运行结束
+          plugin.run({
+            commandArgs: commandArgs
+          });
+          resultList.push(plugin.result); //插件运行结束
 
-        _this2.emit(CheckerEventNameEnum.ITEM_END, plugin);
-      });
+          this.emit(CheckerEventNameEnum.ITEM_END, plugin);
+
+          if (!plugin.isSuccess) {
+            break;
+          }
+        }
+      } catch (err) {
+        _iterator.e(err);
+      } finally {
+        _iterator.f();
+      }
+
       sw.stop();
       this.timeSpent = sw.value / 1000;
       this.emit(CheckerEventNameEnum.RESULT, resultList);

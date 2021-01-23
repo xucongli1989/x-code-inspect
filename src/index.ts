@@ -83,8 +83,7 @@ class Checker extends EventEmitter implements CheckerType {
         //开始处理
         this.emit(CheckerEventNameEnum.START)
         sw.start()
-        this.pluginList.forEach((p) => {
-            const plugin = p
+        for (const plugin of this.pluginList) {
             //开始准备运行插件
             this.emit(CheckerEventNameEnum.ITEM_START, plugin.name)
             //运行插件
@@ -94,7 +93,10 @@ class Checker extends EventEmitter implements CheckerType {
             resultList.push(plugin.result)
             //插件运行结束
             this.emit(CheckerEventNameEnum.ITEM_END, plugin)
-        })
+            if (!plugin.isSuccess) {
+                break
+            }
+        }
         sw.stop()
         this.timeSpent = sw.value / 1000
         this.emit(CheckerEventNameEnum.RESULT, resultList)

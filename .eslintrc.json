@@ -17,7 +17,7 @@
     "__webpack_public_path__": true
   },
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "D:\\MyData\\GitHub\\x-code-inspect\\tsconfig.json"
   },
   "plugins": [
     "@typescript-eslint"
@@ -47,6 +47,7 @@
     "prefer-template": "off",
     "eqeqeq": "off",
     "import/prefer-default-export": "off",
+    "no-restricted-syntax": "off",
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/no-unsafe-return": "off",

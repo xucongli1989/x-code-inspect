@@ -8,7 +8,10 @@
         "commonjs": true
     },
     "extends": [
-        "airbnb-typescript"
+        "airbnb-typescript",
+        "airbnb/hooks",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],
     "globals": {
         "__webpack_public_path__": true
@@ -20,6 +23,20 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "jsx-a11y/no-static-element-interactions":"off",
+        "jsx-a11y/click-events-have-key-events":"off",
+        "react/jsx-closing-bracket-location":"off",
+        "react/destructuring-assignment":"off",
+        "react/jsx-wrap-multilines":"off",
+        "react/jsx-one-expression-per-line":"off",
+        "react/jsx-indent":"off",
+        "react/jsx-indent-props":"off",
+        "no-restricted-globals":"off",
+        "no-underscore-dangle":"off",
+        "arrow-body-style":"off",
+        "no-console":"off",
+        "import/no-cycle":"off",
+        "linebreak-style":"off",
         "arrow-parens":"off",
         "eol-last":"off",
         "no-plusplus":"off",
@@ -30,6 +47,7 @@
         "prefer-template":"off",
         "eqeqeq":"off",
         "import/prefer-default-export":"off",
+        "@typescript-eslint/naming-convention":"off",
         "@typescript-eslint/no-unsafe-return":"off",
         "@typescript-eslint/comma-dangle":"off",
         "@typescript-eslint/lines-between-class-members":"off",

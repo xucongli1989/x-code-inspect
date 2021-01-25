@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "dccf7f01e98de6457724";
+/******/ 	var hotCurrentHash = "8331affdb7e30cc5baf9";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1102,7 +1102,7 @@ var eslint_Plugin = /*#__PURE__*/function () {
       external_fs_default.a.writeFileSync(projectConfigPath, eslintConfigStr);
       info("Updated file: ", projectConfigPath); //开始运行检查
 
-      var checkCmd = "cd ".concat(options.commandArgs.packagePath, " && eslint ").concat(options.commandArgs.codePath, " --resolve-plugins-relative-to ").concat(options.commandArgs.packagePath, " --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ").concat(projectConfigPath, " --ignore-path ").concat(projectIgnoreConfigPath, " --max-warnings 0 ");
+      var checkCmd = "cd ".concat(options.commandArgs.codePath, " && eslint ./ --resolve-plugins-relative-to ").concat(options.commandArgs.packagePath, " --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ").concat(projectConfigPath, " --ignore-path ").concat(projectIgnoreConfigPath, " --max-warnings 0 ");
       info("Executing command: ", checkCmd);
       var execResult = external_shelljs_default.a.exec(checkCmd, {
         silent: false

@@ -93,8 +93,7 @@
   "files": [
     "dist",
     "bin",
-    "doc",
-    "node_modules"
+    "doc"
   ],
   "engines": {
     "node": ">=10.13.0"

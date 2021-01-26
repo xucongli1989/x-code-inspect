@@ -7,10 +7,10 @@
         "amd": true,
         "commonjs": true
     },
-    "parser": "@typescript-eslint/parser",
+    "parser": "./node_modules/x-code-inspect/node_modules/@typescript-eslint/parser",
     "extends": [
-        "airbnb-typescript",
-        "airbnb/hooks",
+        "./node_modules/x-code-inspect/node_modules/eslint-config-airbnb-typescript",
+        "./node_modules/x-code-inspect/node_modules/eslint-config-airbnb/hooks",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],
@@ -19,6 +19,7 @@
     },
     "parserOptions": {
             "project": "./tsconfig.json",
+            "tsconfigRootDir":"",
             "sourceType": "module",
             "ecmaFeatures": {
               "modules": true,

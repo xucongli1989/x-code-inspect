@@ -63,6 +63,7 @@ class Plugin implements BasePluginType {
                 eslintConfig.globals[k] = false
             })
         }
+        eslintConfig.parserOptions.tsconfigRootDir = options.commandArgs.codePath
         if (options.commandArgs.isDebug) {
             Log.info(eslintConfig)
         }

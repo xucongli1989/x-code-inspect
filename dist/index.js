@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "ebf4839edf02a0b12094";
+/******/ 	var hotCurrentHash = "9a9fb237d93080244621";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1093,6 +1093,8 @@ var eslint_Plugin = /*#__PURE__*/function () {
           eslintConfig.globals[k] = false;
         });
       }
+
+      eslintConfig.parserOptions.tsconfigRootDir = options.commandArgs.codePath;
 
       if (options.commandArgs.isDebug) {
         info(eslintConfig);

@@ -15,7 +15,7 @@ class Plugin implements BasePluginType {
     } as CheckerResultType
     run(options: BasePluginOptionsType) {
         //开始运行检查
-        const cmd = `cd ${options.commandArgs.codePath} && tsc --noEmit`
+        const cmd = `cd ${options.commandArgs.packagePath} && tsc --noEmit -p ${options.commandArgs.codePath}`
         Log.info("Executing command: ", cmd)
         const execResult = shell.exec(cmd, { silent: false })
 

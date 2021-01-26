@@ -14,7 +14,7 @@ class Plugin implements BasePluginType {
         msgType: CheckerMessageTypeEnum.INFO
     } as CheckerResultType
     run(options: BasePluginOptionsType) {
-        const cmd = `cd ${options.commandArgs.codePath} && x-package-version-strict-check`
+        const cmd = `cd ${options.commandArgs.packagePath} && x-package-version-strict-check --path ${options.commandArgs.codePath}`
         Log.info("Executing command: ", cmd)
         const outStr: string = shell.exec(cmd, { silent: false }).stdout
 

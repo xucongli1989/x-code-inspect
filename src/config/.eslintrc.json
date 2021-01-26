@@ -7,6 +7,7 @@
         "amd": true,
         "commonjs": true
     },
+    "parser": "@typescript-eslint/parser",
     "extends": [
         "airbnb-typescript",
         "airbnb/hooks",
@@ -17,7 +18,12 @@
         "__webpack_public_path__": true
     },
     "parserOptions": {
-        "project": "./tsconfig.json"
+            "project": "./tsconfig.json",
+            "sourceType": "module",
+            "ecmaFeatures": {
+              "modules": true,
+              "jsx": true
+          }
     },
     "plugins": [
         "@typescript-eslint"

@@ -1,5 +1,5 @@
 import shell from "shelljs"
-import { BasePluginType, BasePluginOptionsType, CheckerResultType, CheckerMessageTypeEnum } from "../../type"
+import { BasePluginType, CheckerResultType, CheckerMessageTypeEnum } from "../../type"
 import * as Log from "../../log"
 
 class Plugin implements BasePluginType {
@@ -13,8 +13,8 @@ class Plugin implements BasePluginType {
         msgCount: 0,
         msgType: CheckerMessageTypeEnum.INFO
     } as CheckerResultType
-    run(options: BasePluginOptionsType) {
-        const cmd = `cd ${options.commandArgs.packagePath} && x-package-version-strict-check --path ${options.commandArgs.codePath}`
+    run() {
+        const cmd = `x-package-version-strict-check`
         Log.info("Executing command: ", cmd)
         const outStr: string = shell.exec(cmd, { silent: false }).stdout
 

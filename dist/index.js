@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "3584453bfe012ab7a193";
+/******/ 	var hotCurrentHash = "715a3f8f07f3ea04cf2c";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -962,8 +962,8 @@ var package_version_Plugin = /*#__PURE__*/function () {
 
   _createClass(Plugin, [{
     key: "run",
-    value: function run(options) {
-      var cmd = "cd ".concat(options.commandArgs.packagePath, " && x-package-version-strict-check --path ").concat(options.commandArgs.codePath);
+    value: function run() {
+      var cmd = "x-package-version-strict-check";
       info("Executing command: ", cmd);
       var outStr = external_shelljs_default.a.exec(cmd, {
         silent: false
@@ -1104,13 +1104,7 @@ var eslint_Plugin = /*#__PURE__*/function () {
       external_fs_default.a.writeFileSync(projectConfigPath, eslintConfigStr);
       info("Updated file: ", projectConfigPath); //开始运行检查
 
-      var eslintPath = external_path_default.a.resolve(options.commandArgs.packagePath, "node_modules\\eslint\\bin\\eslint.js");
-
-      if (!external_fs_default.a.existsSync(eslintPath)) {
-        eslintPath = external_path_default.a.resolve(options.commandArgs.codePath, "node_modules\\eslint\\bin\\eslint.js");
-      }
-
-      var checkCmd = "node ".concat(eslintPath, " ").concat(options.commandArgs.codePath, " --resolve-plugins-relative-to ").concat(options.commandArgs.packagePath, " --ext .js,.jsx,.ts,.tsx --max-warnings 0 ");
+      var checkCmd = "eslint ".concat(options.commandArgs.codePath, " --ext .js,.jsx,.ts,.tsx --max-warnings 0 ");
       info("Executing command: ", checkCmd);
       var execResult = external_shelljs_default.a.exec(checkCmd, {
         silent: false
@@ -1234,7 +1228,7 @@ var prettier_Plugin = /*#__PURE__*/function () {
       external_fs_default.a.writeFileSync(projectConfigPath, JSON.stringify(configObject, null, 2));
       info("Updated file: ", projectConfigPath, configObject); //开始运行检查
 
-      var cmd = "cd ".concat(options.commandArgs.packagePath, " && prettier --check ").concat(external_path_default.a.join(options.commandArgs.codePath, "/**/*"), " --config ").concat(projectConfigPath, " --ignore-path ").concat(projectIgnoreConfigPath, " --no-editorconfig");
+      var cmd = "prettier --no-editorconfig";
       info("Executing command: ", cmd);
       var execResult = external_shelljs_default.a.exec(cmd, {
         silent: false
@@ -1374,9 +1368,9 @@ var type_check_Plugin = /*#__PURE__*/function () {
 
   type_check_createClass(Plugin, [{
     key: "run",
-    value: function run(options) {
+    value: function run() {
       //开始运行检查
-      var cmd = "cd ".concat(options.commandArgs.packagePath, " && tsc --noEmit -p ").concat(options.commandArgs.codePath);
+      var cmd = "tsc --noEmit";
       info("Executing command: ", cmd);
       var execResult = external_shelljs_default.a.exec(cmd, {
         silent: false

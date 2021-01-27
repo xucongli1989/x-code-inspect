@@ -54,7 +54,10 @@ class Plugin implements BasePluginType {
         Log.info("Updated file: ", projectConfigPath, configObject)
 
         //开始运行检查
-        const cmd = `prettier --no-editorconfig`
+        const cmd = `prettier --check ${path.join(
+            options.commandArgs.codePath,
+            "/**/*"
+        )} --no-editorconfig`
         Log.info("Executing command: ", cmd)
         const execResult = shell.exec(cmd, { silent: false })
 

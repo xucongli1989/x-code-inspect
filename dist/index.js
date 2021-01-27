@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "715a3f8f07f3ea04cf2c";
+/******/ 	var hotCurrentHash = "27fbeba8760b5305b1d0";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1228,7 +1228,7 @@ var prettier_Plugin = /*#__PURE__*/function () {
       external_fs_default.a.writeFileSync(projectConfigPath, JSON.stringify(configObject, null, 2));
       info("Updated file: ", projectConfigPath, configObject); //开始运行检查
 
-      var cmd = "prettier --no-editorconfig";
+      var cmd = "prettier --check ".concat(external_path_default.a.join(options.commandArgs.codePath, "/**/*"), " --no-editorconfig");
       info("Executing command: ", cmd);
       var execResult = external_shelljs_default.a.exec(cmd, {
         silent: false

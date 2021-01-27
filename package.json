@@ -10,7 +10,7 @@
     "check": "x-code-inspect --check-dir src",
     "release": "standard-version && git push && git push --tags",
     "ct": "git add -A && git-cz -a",
-    "postinstall": "node ./run.js"
+    "postinstall": "peerdeps"
   },
   "bin": {
     "x-code-inspect": "./bin/index.js"
@@ -55,9 +55,9 @@
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.21.5",
     "eslint-plugin-react-hooks": "4.2.0",
-    "install-peerdeps": "3.0.0",
     "make-dir": "3.1.0",
     "ololog": "1.1.164",
+    "peerdeps": "1.1.1",
     "prettier": "2.2.0",
     "prettyoutput": "1.2.0",
     "react": "17.0.1",
@@ -110,8 +110,7 @@
   "files": [
     "dist",
     "bin",
-    "doc",
-    "run.js"
+    "doc"
   ],
   "engines": {
     "node": ">=10.13.0"

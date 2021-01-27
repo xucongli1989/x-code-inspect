@@ -7,10 +7,10 @@
         "amd": true,
         "commonjs": true
     },
-    "parser": "./node_modules/x-code-inspect/node_modules/@typescript-eslint/parser",
+    "parser": "@typescript-eslint/parser",
     "extends": [
-        "./node_modules/x-code-inspect/node_modules/eslint-config-airbnb-typescript",
-        "./node_modules/x-code-inspect/node_modules/eslint-config-airbnb/hooks",
+        "eslint-config-airbnb-typescript",
+        "eslint-config-airbnb/hooks",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],

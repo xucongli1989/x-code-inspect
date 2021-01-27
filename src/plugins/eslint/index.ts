@@ -72,7 +72,11 @@ class Plugin implements BasePluginType {
         Log.info("Updated file: ", projectConfigPath)
 
         //开始运行检查
-        const checkCmd = `cd ${options.commandArgs.packagePath} && eslint ${options.commandArgs.codePath} --resolve-plugins-relative-to ${options.commandArgs.packagePath} --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ${projectConfigPath} --ignore-path ${projectIgnoreConfigPath} --max-warnings 0 `
+        let eslintPath = path.resolve(options.commandArgs.packagePath, "node_modules\\eslint\\bin\\eslint.js")
+        if (!fs.existsSync(eslintPath)) { 
+            eslintPath = path.resolve(options.commandArgs.codePath, "node_modules\\eslint\\bin\\eslint.js")
+        }
+        const checkCmd = `node ${eslintPath} ${options.commandArgs.codePath} --resolve-plugins-relative-to ${options.commandArgs.packagePath} --ext .js,.jsx,.ts,.tsx --max-warnings 0 `
         Log.info("Executing command: ", checkCmd)
         const execResult = shell.exec(checkCmd, { silent: false })
         const outStr: string = execResult.stdout

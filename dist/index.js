@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "9a9fb237d93080244621";
+/******/ 	var hotCurrentHash = "3584453bfe012ab7a193";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1104,7 +1104,13 @@ var eslint_Plugin = /*#__PURE__*/function () {
       external_fs_default.a.writeFileSync(projectConfigPath, eslintConfigStr);
       info("Updated file: ", projectConfigPath); //开始运行检查
 
-      var checkCmd = "cd ".concat(options.commandArgs.packagePath, " && eslint ").concat(options.commandArgs.codePath, " --resolve-plugins-relative-to ").concat(options.commandArgs.packagePath, " --ext .js,.jsx,.ts,.tsx --no-eslintrc -c ").concat(projectConfigPath, " --ignore-path ").concat(projectIgnoreConfigPath, " --max-warnings 0 ");
+      var eslintPath = external_path_default.a.resolve(options.commandArgs.packagePath, "node_modules\\eslint\\bin\\eslint.js");
+
+      if (!external_fs_default.a.existsSync(eslintPath)) {
+        eslintPath = external_path_default.a.resolve(options.commandArgs.codePath, "node_modules\\eslint\\bin\\eslint.js");
+      }
+
+      var checkCmd = "node ".concat(eslintPath, " ").concat(options.commandArgs.codePath, " --resolve-plugins-relative-to ").concat(options.commandArgs.packagePath, " --ext .js,.jsx,.ts,.tsx --max-warnings 0 ");
       info("Executing command: ", checkCmd);
       var execResult = external_shelljs_default.a.exec(checkCmd, {
         silent: false

@@ -9,8 +9,7 @@
     "cli": "npm unlink x-code-inspect && npm link x-code-inspect",
     "check": "x-code-inspect --check-dir src",
     "release": "standard-version && git push && git push --tags",
-    "ct": "git add -A && git-cz -a",
-    "postinstall": "peerdeps"
+    "ct": "git add -A && git-cz -a"
   },
   "bin": {
     "x-code-inspect": "./bin/index.js"
@@ -57,7 +56,6 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "make-dir": "3.1.0",
     "ololog": "1.1.164",
-    "peerdeps": "1.1.1",
     "prettier": "2.2.0",
     "prettyoutput": "1.2.0",
     "react": "17.0.1",

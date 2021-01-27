@@ -5,7 +5,6 @@ This is a package for checking JavaScript projects. You only need to install thi
 # Why use it
 
 - You don't set up common code checking tools for every project
-- Zero configuration
 - Keep project style the same
 
 # Usage
@@ -16,11 +15,31 @@ This is a package for checking JavaScript projects. You only need to install thi
 
 - `npm i --save-dev --save-exact x-code-inspect@latest`
 
-- Add a script in `package.json`
+- And copy these dependencies to `devDependencies`
 
-  ```bash
+  ```javascript
+      "@typescript-eslint/eslint-plugin": "4.8.2",
+      "@typescript-eslint/parser": "4.8.2",
+      "babel-eslint": "10.1.0",
+      "eslint": "7.14.0",
+      "eslint-config-airbnb": "18.2.1",
+      "eslint-config-airbnb-typescript": "12.0.0",
+      "eslint-plugin-import": "2.22.1",
+      "eslint-plugin-jsx-a11y": "6.4.1",
+      "eslint-plugin-react": "7.21.5",
+      "eslint-plugin-react-hooks": "4.2.0",
+      "prettier": "2.2.0",
+      "typescript": "4.1.2",
+      "x-package-version-strict-check": "1.7.0"
+  ```
+
+- And add a script
+
+  ```javascript
   "check":"x-code-inspect"
   ```
+
+- `npm i`
 
 - `npm run check`
 

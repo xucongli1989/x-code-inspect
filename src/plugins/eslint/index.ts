@@ -27,6 +27,12 @@ class Plugin implements BasePluginType {
         del.sync(path.resolve(options.commandArgs.codePath, ".eslintignore"))
         Log.info("Clear project's config file about ESLint!")
 
+        //替换 eslint-plugin-react-hooks 源码
+        Log.info("Replace [eslint-plugin-react-hooks] source to ignore [be called conditionally] of hooks tips...")
+        const copyCmd = `cpy ${path.resolve(options.commandArgs.packagePath, "dist/npm-source/eslint-plugin-react-hooks/cjs/*")} ${path.resolve(options.commandArgs.codePath, "node_modules/eslint-plugin-react-hooks/cjs/")}`
+        Log.info("Executing command: ", copyCmd)
+        shell.exec(copyCmd)
+
         //添加新的配置文件
         const projectConfigPath = path.resolve(options.commandArgs.codePath, ".eslintrc.json")
         const projectIgnoreConfigPath = path.resolve(options.commandArgs.codePath, ".eslintignore")

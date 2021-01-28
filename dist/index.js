@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "f0deb00ac8dccd2930de";
+/******/ 	var hotCurrentHash = "b8e8914d1bb9d3d642ba";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1051,7 +1051,12 @@ var eslint_Plugin = /*#__PURE__*/function () {
       external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.yml"));
       external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc"));
       external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".eslintignore"));
-      info("Clear project's config file about ESLint!"); //添加新的配置文件
+      info("Clear project's config file about ESLint!"); //替换 eslint-plugin-react-hooks 源码
+
+      info("Replace [eslint-plugin-react-hooks] source to ignore [be called conditionally] of hooks tips...");
+      var copyCmd = "cpy ".concat(external_path_default.a.resolve(options.commandArgs.packagePath, "dist/npm-source/eslint-plugin-react-hooks/cjs/*"), " ").concat(external_path_default.a.resolve(options.commandArgs.codePath, "node_modules/eslint-plugin-react-hooks/cjs/"));
+      info("Executing command: ", copyCmd);
+      external_shelljs_default.a.exec(copyCmd); //添加新的配置文件
 
       var projectConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".eslintrc.json");
       var projectIgnoreConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".eslintignore");

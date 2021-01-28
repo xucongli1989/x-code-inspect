@@ -11,7 +11,7 @@ This is a package for checking JavaScript projects. You only need to install thi
 
 - Open your project.
 
-- Remove the configuration files about `ESLint` and `Prettier` from project, because you no longer need them and this tool will creates them automatically.
+- Remove the configuration files about `ESLint` and `Prettier` from project, because you no longer need them and this tool will creates them automatically. 
 
 - `npm i --save-dev --save-exact x-code-inspect@latest`
 

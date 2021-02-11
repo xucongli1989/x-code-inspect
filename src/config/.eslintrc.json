@@ -49,6 +49,7 @@
         "guard-for-in":"off",
         "no-bitwise":"off",
         "max-classes-per-file":"off",
+        "no-param-reassign":"off",
         "no-restricted-globals":"off",
         "no-underscore-dangle":"off",
         "arrow-body-style":"off",

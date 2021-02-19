@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.4](https://github.com/xucongli1989/x-code-inspect/compare/v1.3.3...v1.3.4) (2021-02-19)
+
+
+### Bug Fixes
+
+* add remove quote in CLI options when used in mac os error without quote ([2dd8f37](https://github.com/xucongli1989/x-code-inspect/commit/2dd8f37264e4eb72c14d9d6e8585c9c6a729d9e3))
+
 ### [1.3.3](https://github.com/xucongli1989/x-code-inspect/compare/v1.3.2...v1.3.3) (2021-02-19)
 
 

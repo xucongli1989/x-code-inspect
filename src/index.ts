@@ -11,6 +11,13 @@ import { plugins } from "./plugins"
 import { CommandArgsType, CheckerType, CheckerResultType, BasePluginType, CheckerEventNameEnum } from "./type"
 import * as Log from "./log"
 
+function trimQuote(str: string) {
+    if (!str) {
+        return ""
+    }
+    return JsKit.common.string.trimString(JsKit.common.string.trimString(str, "'"), '"')
+}
+
 const commandArgs: CommandArgsType = {} as any
 commandArgs.execFileRootPath = (callerPath as any)()
 commandArgs.packagePath = path.resolve(commandArgs.execFileRootPath, "../../")
@@ -32,8 +39,8 @@ commander
     .parse(process.argv)
 commandArgs.isDebug = commander.debug
 commandArgs.codePath = path.resolve(commander.path)
-commandArgs.checkDir = commander.checkDir
-commandArgs.ignoreCheckDir = commander.ignoreCheckDir
+commandArgs.checkDir = trimQuote(commander.checkDir)
+commandArgs.ignoreCheckDir = trimQuote(commander.ignoreCheckDir)
 commandArgs.eslint_global = commander.eslintGlobal
 
 //配置处理

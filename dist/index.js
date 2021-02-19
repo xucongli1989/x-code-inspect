@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "59ddb35a51e7493315d4";
+/******/ 	var hotCurrentHash = "4b932b3df3ab7f01a5e8";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1452,6 +1452,15 @@ function src_defineProperty(obj, key, value) { if (key in obj) { Object.definePr
 
 
 
+
+function trimQuote(str) {
+  if (!str) {
+    return "";
+  }
+
+  return external_x_js_kit_default.a.common.string.trimString(external_x_js_kit_default.a.common.string.trimString(str, "'"), '"');
+}
+
 var commandArgs = {};
 commandArgs.execFileRootPath = external_caller_path_default()();
 commandArgs.packagePath = external_path_default.a.resolve(commandArgs.execFileRootPath, "../../"); //package.json
@@ -1464,8 +1473,8 @@ external_commander_default.a.version(src_packageJson.version);
 external_commander_default.a.option("--debug", "Run as debug.", false).option("--path <type>", "Project's path that you want to check.", "./").option("--check-dir <type>", "Specify a directory to be scanned by code (e.g. by plug-ins such as eslint), the default is root value of --path. (multiple are separated by ,).", "").option("--ignore-check-dir <type>", "Specify a directory to be no scanned by code (e.g. by plug-ins such as eslint), (multiple are separated by ,).", "").option("--eslint-global <type>", "Define global variate, see eslint doc.", "").parse(process.argv);
 commandArgs.isDebug = external_commander_default.a.debug;
 commandArgs.codePath = external_path_default.a.resolve(external_commander_default.a.path);
-commandArgs.checkDir = external_commander_default.a.checkDir;
-commandArgs.ignoreCheckDir = external_commander_default.a.ignoreCheckDir;
+commandArgs.checkDir = trimQuote(external_commander_default.a.checkDir);
+commandArgs.ignoreCheckDir = trimQuote(external_commander_default.a.ignoreCheckDir);
 commandArgs.eslint_global = external_commander_default.a.eslintGlobal; //配置处理
 
 var errorMsgList = [];

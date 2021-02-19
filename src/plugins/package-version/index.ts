@@ -1,5 +1,6 @@
 import shell from "shelljs"
-import { BasePluginType, CheckerResultType, CheckerMessageTypeEnum } from "../../type"
+import path from "path"
+import { BasePluginType, CheckerResultType, CheckerMessageTypeEnum, BasePluginOptionsType } from "../../type"
 import * as Log from "../../log"
 
 class Plugin implements BasePluginType {
@@ -13,8 +14,8 @@ class Plugin implements BasePluginType {
         msgCount: 0,
         msgType: CheckerMessageTypeEnum.INFO
     } as CheckerResultType
-    run() {
-        const cmd = `x-package-version-strict-check`
+    run(options: BasePluginOptionsType) {
+        const cmd = path.join(options.commandArgs.codePath, "node_modules/.bin/x-package-version-strict-check")
         Log.info("Executing command: ", cmd)
         const outStr: string = shell.exec(cmd, { silent: false }).stdout
 

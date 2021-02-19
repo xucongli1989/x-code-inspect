@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "502aaeb5c7eab4684aba";
+/******/ 	var hotCurrentHash = "59ddb35a51e7493315d4";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -945,6 +945,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 var package_version_Plugin = /*#__PURE__*/function () {
   function Plugin() {
     _classCallCheck(this, Plugin);
@@ -962,8 +963,8 @@ var package_version_Plugin = /*#__PURE__*/function () {
 
   _createClass(Plugin, [{
     key: "run",
-    value: function run() {
-      var cmd = "x-package-version-strict-check";
+    value: function run(options) {
+      var cmd = external_path_default.a.join(options.commandArgs.codePath, "node_modules/.bin/x-package-version-strict-check");
       info("Executing command: ", cmd);
       var outStr = external_shelljs_default.a.exec(cmd, {
         silent: false
@@ -1099,8 +1100,6 @@ var eslint_Plugin = /*#__PURE__*/function () {
         });
       }
 
-      eslintConfig.parserOptions.tsconfigRootDir = options.commandArgs.codePath;
-
       if (options.commandArgs.isDebug) {
         info(eslintConfig);
       }
@@ -1109,7 +1108,7 @@ var eslint_Plugin = /*#__PURE__*/function () {
       external_fs_default.a.writeFileSync(projectConfigPath, eslintConfigStr);
       info("Updated file: ", projectConfigPath); //开始运行检查
 
-      var checkCmd = "eslint ".concat(options.commandArgs.codePath, " --ext .js,.jsx,.ts,.tsx --max-warnings 0 ");
+      var checkCmd = "".concat(external_path_default.a.join(options.commandArgs.codePath, "node_modules/.bin/eslint"), " ").concat(options.commandArgs.codePath, " --ext .js,.jsx,.ts,.tsx --max-warnings 0 ");
       info("Executing command: ", checkCmd);
       var execResult = external_shelljs_default.a.exec(checkCmd, {
         silent: false
@@ -1233,7 +1232,7 @@ var prettier_Plugin = /*#__PURE__*/function () {
       external_fs_default.a.writeFileSync(projectConfigPath, JSON.stringify(configObject, null, 2));
       info("Updated file: ", projectConfigPath, configObject); //开始运行检查
 
-      var cmd = "prettier --check ".concat(external_path_default.a.join(options.commandArgs.codePath, "/**/*"), " --no-editorconfig");
+      var cmd = "".concat(external_path_default.a.join(options.commandArgs.codePath, "node_modules/.bin/prettier"), " --check ").concat(external_path_default.a.join(options.commandArgs.codePath, "/**/*"), " --no-editorconfig");
       info("Executing command: ", cmd);
       var execResult = external_shelljs_default.a.exec(cmd, {
         silent: false
@@ -1356,6 +1355,7 @@ function type_check_defineProperty(obj, key, value) { if (key in obj) { Object.d
 
 
 
+
 var type_check_Plugin = /*#__PURE__*/function () {
   function Plugin() {
     type_check_classCallCheck(this, Plugin);
@@ -1373,9 +1373,9 @@ var type_check_Plugin = /*#__PURE__*/function () {
 
   type_check_createClass(Plugin, [{
     key: "run",
-    value: function run() {
+    value: function run(options) {
       //开始运行检查
-      var cmd = "tsc --noEmit";
+      var cmd = "".concat(external_path_default.a.join(options.commandArgs.codePath, "node_modules/.bin/tsc"), " --noEmit");
       info("Executing command: ", cmd);
       var execResult = external_shelljs_default.a.exec(cmd, {
         silent: false

@@ -69,7 +69,6 @@ class Plugin implements BasePluginType {
                 eslintConfig.globals[k] = false
             })
         }
-        eslintConfig.parserOptions.tsconfigRootDir = options.commandArgs.codePath
         if (options.commandArgs.isDebug) {
             Log.info(eslintConfig)
         }
@@ -78,7 +77,7 @@ class Plugin implements BasePluginType {
         Log.info("Updated file: ", projectConfigPath)
 
         //开始运行检查
-        const checkCmd = `eslint ${options.commandArgs.codePath} --ext .js,.jsx,.ts,.tsx --max-warnings 0 `
+        const checkCmd = `${path.join(options.commandArgs.codePath, "node_modules/.bin/eslint")} ${options.commandArgs.codePath} --ext .js,.jsx,.ts,.tsx --max-warnings 0 `
         Log.info("Executing command: ", checkCmd)
         const execResult = shell.exec(checkCmd, { silent: false })
         const outStr: string = execResult.stdout

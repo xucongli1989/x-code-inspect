@@ -54,7 +54,7 @@ class Plugin implements BasePluginType {
         Log.info("Updated file: ", projectConfigPath, configObject)
 
         //开始运行检查
-        const cmd = `prettier --check ${path.join(
+        const cmd = `${path.join(options.commandArgs.codePath, "node_modules/.bin/prettier")} --check ${path.join(
             options.commandArgs.codePath,
             "/**/*"
         )} --no-editorconfig`

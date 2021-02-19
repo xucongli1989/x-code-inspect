@@ -1,5 +1,6 @@
 import shell from "shelljs"
-import { BasePluginType, CheckerResultType, CheckerMessageTypeEnum } from "../../type"
+import path from "path"
+import { BasePluginType, CheckerResultType, CheckerMessageTypeEnum, BasePluginOptionsType } from "../../type"
 import * as Log from "../../log"
 
 class Plugin implements BasePluginType {
@@ -13,9 +14,9 @@ class Plugin implements BasePluginType {
         msgCount: 0,
         msgType: CheckerMessageTypeEnum.INFO
     } as CheckerResultType
-    run() {
+    run(options: BasePluginOptionsType) {
         //开始运行检查
-        const cmd = `tsc --noEmit`
+        const cmd = `${path.join(options.commandArgs.codePath, "node_modules/.bin/tsc")} --noEmit`
         Log.info("Executing command: ", cmd)
         const execResult = shell.exec(cmd, { silent: false })
 

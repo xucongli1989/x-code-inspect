@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.3](https://github.com/xucongli1989/x-code-inspect/compare/v1.3.2...v1.3.3) (2021-02-19)
+
+
+### Bug Fixes
+
+* specify plugin's dir ([3e26e12](https://github.com/xucongli1989/x-code-inspect/commit/3e26e12bd2353d62001b28f4811dae1baf6710f7))
+
 ### [1.3.2](https://github.com/xucongli1989/x-code-inspect/compare/v1.3.1...v1.3.2) (2021-02-16)
 
 

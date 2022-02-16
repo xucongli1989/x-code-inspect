@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.6](https://github.com/xucongli1989/x-code-inspect/compare/v1.3.5...v1.3.6) (2022-02-16)
+
+
+### Bug Fixes
+
+* update eslint template configuration ([3cdf479](https://github.com/xucongli1989/x-code-inspect/commit/3cdf479db8c7164af9feb243ed6851c11cc3fea7))
+
 ### [1.3.5](https://github.com/xucongli1989/x-code-inspect/compare/v1.3.4...v1.3.5) (2021-05-16)
 
 ### [1.3.4](https://github.com/xucongli1989/x-code-inspect/compare/v1.3.3...v1.3.4) (2021-02-19)

@@ -47,6 +47,7 @@
         "react/jsx-no-target-blank": "off",
         "react-hooks/exhaustive-deps": "off",
         "react/jsx-key": "error",
+        "react/require-default-props":"off",
         "no-continue": "off",
         "guard-for-in": "off",
         "no-bitwise": "off",

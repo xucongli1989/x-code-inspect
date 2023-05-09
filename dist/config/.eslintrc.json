@@ -47,7 +47,8 @@
         "react/jsx-no-target-blank": "off",
         "react-hooks/exhaustive-deps": "off",
         "react/jsx-key": "error",
-        "react/require-default-props":"off",
+        "react/require-default-props": "off",
+        "react/function-component-definition": "off",
         "no-continue": "off",
         "guard-for-in": "off",
         "no-bitwise": "off",
@@ -115,7 +116,9 @@
                 "typedefs": false,
                 "ignoreTypeReferences": true
             }
-        ]
+        ],
+        "@typescript-eslint/no-unsafe-argument": "off",
+        "@typescript-eslint/default-param-last": "off"
     },
     "overrides": [
         {

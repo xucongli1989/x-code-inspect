@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/xucongli1989/x-code-inspect/compare/v1.4.1...v1.4.2) (2023-05-19)
+
+
+### Bug Fixes
+
+* update eslint rule for react ([3d0ee8f](https://github.com/xucongli1989/x-code-inspect/commit/3d0ee8fed057ed3f98942e202d4f7fa63dc6e6de))
+
 ### [1.4.1](https://github.com/xucongli1989/x-code-inspect/compare/v1.4.0...v1.4.1) (2023-05-09)
 
 

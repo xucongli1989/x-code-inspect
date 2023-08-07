@@ -119,7 +119,9 @@
             }
         ],
         "@typescript-eslint/no-unsafe-argument": "off",
-        "@typescript-eslint/default-param-last": "off"
+        "@typescript-eslint/default-param-last": "off",
+        "@typescript-eslint/no-unsafe-enum-comparison":"off",
+        "@typescript-eslint/no-misused-promises":"off"
     },
     "overrides": [
         {

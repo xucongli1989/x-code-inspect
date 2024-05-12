@@ -124,7 +124,8 @@
         "@typescript-eslint/no-unsafe-enum-comparison": "off",
         "@typescript-eslint/no-misused-promises": "off",
         "@typescript-eslint/ban-ts-comment": "off",
-        "@typescript-eslint/no-namespace": "off"
+        "@typescript-eslint/no-namespace": "off",
+        "@typescript-eslint/dot-notation":"off"
     },
     "overrides": [
         {

@@ -78,6 +78,7 @@
         "no-restricted-syntax": "off",
         "radix": "off",
         "operator-linebreak": "off",
+        "newline-per-chained-call":"off",
         "@typescript-eslint/no-loop-func": "off",
         "@typescript-eslint/unbound-method": "off",
         "@typescript-eslint/prefer-regexp-exec": "off",

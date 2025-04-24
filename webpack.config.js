@@ -1,25 +1,23 @@
-const path = require('path')
+const path = require("path")
 const webpack = require("webpack")
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const shell = require("shelljs")
-const EventHooksPlugin = require('event-hooks-webpack-plugin')
-const nodeExternals = require('webpack-node-externals')
+const EventHooksPlugin = require("event-hooks-webpack-plugin")
+const nodeExternals = require("webpack-node-externals")
 
 const config = {
     entry: {
         index: "./src/index.ts"
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: '[name].js'
+        path: path.resolve(__dirname, "dist"),
+        filename: "[name].js"
     },
-    target: 'node',
+    target: "node",
     node: {
         __dirname: true
     },
-    externals: [
-        nodeExternals()
-    ],
+    externals: [nodeExternals()],
     resolve: {
         extensions: [".ts", ".js", ".json"]
     },
@@ -30,7 +28,8 @@ const config = {
                 test: /\.[jt]sx?$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
-            }, {
+            },
+            {
                 test: /\.art.html$/,
                 loader: "art-template-loader"
             }

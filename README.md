@@ -9,7 +9,7 @@ This is a package for checking JavaScript projects. You only need to install thi
 
 # Check Range
 
--   Only check `./src` and `./*.{js,ts,json,mjs,cjs}`
+-   Only check `./src` and `./*.{js,ts,mjs,cjs}`
 
 # Usage
 

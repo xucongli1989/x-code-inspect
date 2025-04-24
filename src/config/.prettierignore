@@ -1,5 +1,8 @@
 /*
 !/src/
-!/*.{js,ts,json,mjs,cjs}
+!/*.js
+!/*.ts
+!/*.mjs
+!/*.cjs
 **/.eslintignore
 **/.prettierignore

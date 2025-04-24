@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/xucongli1989/x-code-inspect/compare/v1.8.0...v1.9.0) (2025-04-24)
+
+
+### Features
+
+* update prettier config ([80a145b](https://github.com/xucongli1989/x-code-inspect/commit/80a145bca434e33d43957700bbc620b4374de010))
+
 ## [1.8.0](https://github.com/xucongli1989/x-code-inspect/compare/v1.7.2...v1.8.0) (2024-08-29)
 
 

@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "eb80cdeb4ffb766a0bf2";
+/******/ 	var hotCurrentHash = "bc5b7e95a91c4ffff6e7";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1342,8 +1342,9 @@ var TypeCheckPlugin = new type_check_Plugin();
 
 
 
+ //注意顺序，比如 eslint 要尽量往后放，前面的问题解决后再处理后面的问题
 
-var plugins = [ProjectBasicPlugin, PackageVersionPlugin, EslintPlugin, PrettierPlugin, TypeCheckPlugin];
+var plugins = [PackageVersionPlugin, ProjectBasicPlugin, PrettierPlugin, EslintPlugin, TypeCheckPlugin];
 // CONCATENATED MODULE: ./src/index.ts
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 

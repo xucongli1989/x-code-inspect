@@ -9,8 +9,9 @@
   },
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "airbnb-typescript",
-    "airbnb/hooks",
+    "eslint-config-airbnb",
+    "eslint-config-airbnb-typescript",
+    "eslint-config-airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
@@ -18,7 +19,7 @@
     "__webpack_public_path__": true
   },
   "parserOptions": {
-    "project": "./tsconfig.json",
+    "project": "tsconfig.json",
     "sourceType": "module",
     "ecmaFeatures": {
       "modules": true,
@@ -29,17 +30,36 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/alt-text": "off",
+    "react/no-danger": "off",
+    "react/self-closing-comp": "off",
+    "react/no-array-index-key": "off",
+    "react/jsx-props-no-spreading": "off",
     "react/jsx-closing-bracket-location": "off",
     "react/destructuring-assignment": "off",
     "react/jsx-wrap-multilines": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-indent": "off",
     "react/jsx-indent-props": "off",
+    "react/jsx-no-target-blank": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-key": "error",
+    "react/require-default-props": "off",
+    "react/function-component-definition": "off",
+    "react/jsx-no-bind": "off",
+    "react/no-deprecated": "off",
+    "no-continue": "off",
+    "guard-for-in": "off",
+    "no-bitwise": "off",
+    "max-classes-per-file": "off",
+    "no-param-reassign": "off",
     "no-restricted-globals": "off",
     "no-underscore-dangle": "off",
     "arrow-body-style": "off",
+    "default-case": "off",
     "no-console": "off",
     "import/no-cycle": "off",
     "linebreak-style": "off",
@@ -52,8 +72,16 @@
     "spaced-comment": "off",
     "prefer-template": "off",
     "eqeqeq": "off",
+    "no-alert": "off",
+    "prefer-destructuring": "off",
     "import/prefer-default-export": "off",
     "no-restricted-syntax": "off",
+    "radix": "off",
+    "operator-linebreak": "off",
+    "newline-per-chained-call": "off",
+    "@typescript-eslint/no-loop-func": "off",
+    "@typescript-eslint/unbound-method": "off",
+    "@typescript-eslint/prefer-regexp-exec": "off",
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/no-unsafe-return": "off",
@@ -91,7 +119,14 @@
         "typedefs": false,
         "ignoreTypeReferences": true
       }
-    ]
+    ],
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/default-param-last": "off",
+    "@typescript-eslint/no-unsafe-enum-comparison": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/dot-notation": "off"
   },
   "overrides": [
     {
@@ -111,7 +146,8 @@
       ],
       "rules": {
         "import/no-default-export": "off",
-        "import/no-extraneous-dependencies": "off"
+        "import/no-extraneous-dependencies": "off",
+        "react-hooks/rules-of-hooks": "off"
       }
     }
   ]

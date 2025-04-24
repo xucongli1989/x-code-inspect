@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "4b932b3df3ab7f01a5e8";
+/******/ 	var hotCurrentHash = "eb80cdeb4ffb766a0bf2";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -774,13 +774,13 @@ module.exports = require("shelljs");
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("commander");
+module.exports = require("del");
 
 /***/ }),
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("del");
+module.exports = require("commander");
 
 /***/ }),
 /* 5 */
@@ -847,7 +847,7 @@ var external_fs_ = __webpack_require__(1);
 var external_fs_default = /*#__PURE__*/__webpack_require__.n(external_fs_);
 
 // EXTERNAL MODULE: external "commander"
-var external_commander_ = __webpack_require__(3);
+var external_commander_ = __webpack_require__(4);
 var external_commander_default = /*#__PURE__*/__webpack_require__.n(external_commander_);
 
 // EXTERNAL MODULE: external "events"
@@ -991,25 +991,13 @@ var package_version_Plugin = /*#__PURE__*/function () {
 
 var PackageVersionPlugin = new package_version_Plugin();
 // EXTERNAL MODULE: external "del"
-var external_del_ = __webpack_require__(4);
+var external_del_ = __webpack_require__(3);
 var external_del_default = /*#__PURE__*/__webpack_require__.n(external_del_);
 
 // CONCATENATED MODULE: ./src/plugins/eslint/index.ts
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { eslint_defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function eslint_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1067,27 +1055,7 @@ var eslint_Plugin = /*#__PURE__*/function () {
       var configPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/.eslintrc.json");
       var ignoreConfigPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/.eslintignore");
       var configObject = JSON.parse(external_fs_default.a.readFileSync(configPath).toString());
-      var ignoreConfig = external_fs_default.a.readFileSync(ignoreConfigPath).toString() + "\n"; //生成配置文件（eslintignore）
-
-      var ignorePathSet = new Set();
-
-      if (options.commandArgs.checkDir) {
-        ignorePathSet.add("/*"); //先要排除所有
-
-        options.commandArgs.checkDir.split(",").forEach(function (x) {
-          ignorePathSet.add("!/".concat(x)); //基于上面排除的范围内，再剔除
-        });
-      }
-
-      if (options.commandArgs.ignoreCheckDir) {
-        options.commandArgs.ignoreCheckDir.split(",").forEach(function (x) {
-          ignorePathSet.add(x);
-        });
-      }
-
-      var ignoreConfigStr = ignoreConfig + _toConsumableArray(ignorePathSet).map(function (x) {
-        return "".concat(x, "\n");
-      }).join("");
+      var ignoreConfigStr = external_fs_default.a.readFileSync(ignoreConfigPath).toString() + "\n"; //生成配置文件（eslintignore）
 
       external_fs_default.a.writeFileSync(projectIgnoreConfigPath, ignoreConfigStr);
       info("Updated file: ", projectIgnoreConfigPath, ignoreConfigStr); //生成配置文件（eslintrc.json）
@@ -1108,7 +1076,7 @@ var eslint_Plugin = /*#__PURE__*/function () {
       external_fs_default.a.writeFileSync(projectConfigPath, eslintConfigStr);
       info("Updated file: ", projectConfigPath); //开始运行检查
 
-      var checkCmd = "".concat(external_path_default.a.join(options.commandArgs.codePath, "node_modules/.bin/eslint"), " ").concat(options.commandArgs.codePath, " --ext .js,.jsx,.ts,.tsx --max-warnings 0 ");
+      var checkCmd = "".concat(external_path_default.a.join(options.commandArgs.codePath, "node_modules/.bin/eslint"), " ").concat(options.commandArgs.codePath, " --ext .js,.jsx,.ts,.tsx,.vue,.mjs,.cjs --max-warnings 0 ");
       info("Executing command: ", checkCmd);
       var execResult = external_shelljs_default.a.exec(checkCmd, {
         silent: false
@@ -1148,18 +1116,6 @@ var eslint_Plugin = /*#__PURE__*/function () {
 
 var EslintPlugin = new eslint_Plugin();
 // CONCATENATED MODULE: ./src/plugins/prettier/index.ts
-function prettier_toConsumableArray(arr) { return prettier_arrayWithoutHoles(arr) || prettier_iterableToArray(arr) || prettier_unsupportedIterableToArray(arr) || prettier_nonIterableSpread(); }
-
-function prettier_nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function prettier_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return prettier_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return prettier_arrayLikeToArray(o, minLen); }
-
-function prettier_iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function prettier_arrayWithoutHoles(arr) { if (Array.isArray(arr)) return prettier_arrayLikeToArray(arr); }
-
-function prettier_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function prettier_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function prettier_defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1203,28 +1159,7 @@ var prettier_Plugin = /*#__PURE__*/function () {
       var configPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/.prettierrc.json");
       var ignoreConfigPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/.prettierignore");
       var configObject = JSON.parse(external_fs_default.a.readFileSync(configPath).toString());
-      var ignoreConfig = external_fs_default.a.readFileSync(ignoreConfigPath).toString() + "\n"; //组装cmd脚本命令
-
-      var ignorePathSet = new Set();
-
-      if (options.commandArgs.checkDir) {
-        ignorePathSet.add("/*"); //先要排除所有
-
-        options.commandArgs.checkDir.split(",").forEach(function (x) {
-          ignorePathSet.add("!/".concat(x)); //基于上面排除的范围内，再剔除
-        });
-      }
-
-      if (options.commandArgs.ignoreCheckDir) {
-        options.commandArgs.ignoreCheckDir.split(",").forEach(function (x) {
-          ignorePathSet.add(x);
-        });
-      } //生成配置文件（prettierignore）
-
-
-      var ignoreConfigStr = ignoreConfig + prettier_toConsumableArray(ignorePathSet).map(function (x) {
-        return "".concat(x, "\n");
-      }).join("");
+      var ignoreConfigStr = external_fs_default.a.readFileSync(ignoreConfigPath).toString() + "\n"; //生成配置文件（prettierignore）
 
       external_fs_default.a.writeFileSync(projectIgnoreConfigPath, ignoreConfigStr);
       info("Updated file: ", projectIgnoreConfigPath, ignoreConfigStr); //生成配置文件（prettierrc）
@@ -1412,11 +1347,11 @@ var plugins = [ProjectBasicPlugin, PackageVersionPlugin, EslintPlugin, PrettierP
 // CONCATENATED MODULE: ./src/index.ts
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = src_unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
-function src_unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return src_arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return src_arrayLikeToArray(o, minLen); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
-function src_arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 function src_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1452,15 +1387,6 @@ function src_defineProperty(obj, key, value) { if (key in obj) { Object.definePr
 
 
 
-
-function trimQuote(str) {
-  if (!str) {
-    return "";
-  }
-
-  return external_x_js_kit_default.a.common.string.trimString(external_x_js_kit_default.a.common.string.trimString(str, "'"), '"');
-}
-
 var commandArgs = {};
 commandArgs.execFileRootPath = external_caller_path_default()();
 commandArgs.packagePath = external_path_default.a.resolve(commandArgs.execFileRootPath, "../../"); //package.json
@@ -1470,11 +1396,9 @@ var src_packageJson = JSON.parse(external_fs_default.a.readFileSync(external_pat
 process.env.PATH = external_path_default.a.resolve(commandArgs.packagePath, "node_modules/.bin") + external_path_default.a.delimiter + process.env.PATH; //命令
 
 external_commander_default.a.version(src_packageJson.version);
-external_commander_default.a.option("--debug", "Run as debug.", false).option("--path <type>", "Project's path that you want to check.", "./").option("--check-dir <type>", "Specify a directory to be scanned by code (e.g. by plug-ins such as eslint), the default is root value of --path. (multiple are separated by ,).", "").option("--ignore-check-dir <type>", "Specify a directory to be no scanned by code (e.g. by plug-ins such as eslint), (multiple are separated by ,).", "").option("--eslint-global <type>", "Define global variate, see eslint doc.", "").parse(process.argv);
+external_commander_default.a.option("--debug", "Run as debug.", false).option("--path <type>", "Project's path that you want to check.", "./").option("--eslint-global <type>", "Define global variate, see eslint doc.", "").parse(process.argv);
 commandArgs.isDebug = external_commander_default.a.debug;
 commandArgs.codePath = external_path_default.a.resolve(external_commander_default.a.path);
-commandArgs.checkDir = trimQuote(external_commander_default.a.checkDir);
-commandArgs.ignoreCheckDir = trimQuote(external_commander_default.a.ignoreCheckDir);
 commandArgs.eslint_global = external_commander_default.a.eslintGlobal; //配置处理
 
 var errorMsgList = [];

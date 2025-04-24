@@ -83,14 +83,6 @@ export interface CommandArgsType {
      */
     packagePath: string;
     /**
-     * 指定一个需要进行代码扫描的目录（如：被eslint等插件进行扫描）
-     */
-    checkDir: string;
-    /**
-     * 指定一个不需要进行代码扫描的目录（如：被eslint等插件进行扫描）
-     */
-    ignoreCheckDir: string;
-    /**
      * eslint cli 配置（--global）
      */
     eslint_global: string;

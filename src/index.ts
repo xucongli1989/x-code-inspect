@@ -11,13 +11,6 @@ import { plugins } from "./plugins"
 import { CommandArgsType, CheckerType, CheckerResultType, BasePluginType, CheckerEventNameEnum } from "./type"
 import * as Log from "./log"
 
-function trimQuote(str: string) {
-    if (!str) {
-        return ""
-    }
-    return JsKit.common.string.trimString(JsKit.common.string.trimString(str, "'"), '"')
-}
-
 const commandArgs: CommandArgsType = {} as any
 commandArgs.execFileRootPath = (callerPath as any)()
 commandArgs.packagePath = path.resolve(commandArgs.execFileRootPath, "../../")
@@ -30,17 +23,9 @@ process.env.PATH = path.resolve(commandArgs.packagePath, "node_modules/.bin") + 
 
 //命令
 commander.version(packageJson.version)
-commander
-    .option("--debug", "Run as debug.", false)
-    .option("--path <type>", "Project's path that you want to check.", "./")
-    .option("--check-dir <type>", "Specify a directory to be scanned by code (e.g. by plug-ins such as eslint), the default is root value of --path. (multiple are separated by ,).", "")
-    .option("--ignore-check-dir <type>", "Specify a directory to be no scanned by code (e.g. by plug-ins such as eslint), (multiple are separated by ,).", "")
-    .option("--eslint-global <type>", "Define global variate, see eslint doc.", "")
-    .parse(process.argv)
+commander.option("--debug", "Run as debug.", false).option("--path <type>", "Project's path that you want to check.", "./").option("--eslint-global <type>", "Define global variate, see eslint doc.", "").parse(process.argv)
 commandArgs.isDebug = commander.debug
 commandArgs.codePath = path.resolve(commander.path)
-commandArgs.checkDir = trimQuote(commander.checkDir)
-commandArgs.ignoreCheckDir = trimQuote(commander.ignoreCheckDir)
 commandArgs.eslint_global = commander.eslintGlobal
 
 //配置处理

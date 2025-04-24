@@ -8,13 +8,7 @@
         "commonjs": true
     },
     "parser": "@typescript-eslint/parser",
-    "extends": [
-        "eslint-config-airbnb",
-        "eslint-config-airbnb-typescript",
-        "eslint-config-airbnb/hooks",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
-    ],
+    "extends": ["eslint-config-airbnb", "eslint-config-airbnb-typescript", "eslint-config-airbnb/hooks", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking"],
     "globals": {
         "__webpack_public_path__": true
     },
@@ -26,9 +20,7 @@
             "jsx": true
         }
     },
-    "plugins": [
-        "@typescript-eslint"
-    ],
+    "plugins": ["@typescript-eslint"],
     "rules": {
         "jsx-a11y/label-has-associated-control": "off",
         "jsx-a11y/no-static-element-interactions": "off",
@@ -78,7 +70,7 @@
         "no-restricted-syntax": "off",
         "radix": "off",
         "operator-linebreak": "off",
-        "newline-per-chained-call":"off",
+        "newline-per-chained-call": "off",
         "@typescript-eslint/no-loop-func": "off",
         "@typescript-eslint/unbound-method": "off",
         "@typescript-eslint/prefer-regexp-exec": "off",
@@ -126,13 +118,11 @@
         "@typescript-eslint/no-misused-promises": "off",
         "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/no-namespace": "off",
-        "@typescript-eslint/dot-notation":"off"
+        "@typescript-eslint/dot-notation": "off"
     },
     "overrides": [
         {
-            "files": [
-                "test/**/*"
-            ],
+            "files": ["test/**/*"],
             "env": {
                 "jest": true,
                 "qunit": true,
@@ -141,9 +131,7 @@
             }
         },
         {
-            "files": [
-                "**/*.stories.*"
-            ],
+            "files": ["**/*.stories.*"],
             "rules": {
                 "import/no-default-export": "off",
                 "import/no-extraneous-dependencies": "off",

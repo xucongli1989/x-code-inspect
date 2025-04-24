@@ -28,24 +28,9 @@ class Plugin implements BasePluginType {
         const configPath = path.resolve(options.commandArgs.packagePath, "dist/config/.prettierrc.json")
         const ignoreConfigPath = path.resolve(options.commandArgs.packagePath, "dist/config/.prettierignore")
         const configObject = JSON.parse(fs.readFileSync(configPath).toString())
-        const ignoreConfig = fs.readFileSync(ignoreConfigPath).toString() + "\n"
-
-        //组装cmd脚本命令
-        const ignorePathSet: Set<string> = new Set()
-        if (options.commandArgs.checkDir) {
-            ignorePathSet.add("/*") //先要排除所有
-            options.commandArgs.checkDir.split(",").forEach((x) => {
-                ignorePathSet.add(`!/${x}`) //基于上面排除的范围内，再剔除
-            })
-        }
-        if (options.commandArgs.ignoreCheckDir) {
-            options.commandArgs.ignoreCheckDir.split(",").forEach((x) => {
-                ignorePathSet.add(x)
-            })
-        }
+        const ignoreConfigStr = fs.readFileSync(ignoreConfigPath).toString() + "\n"
 
         //生成配置文件（prettierignore）
-        const ignoreConfigStr = ignoreConfig + [...ignorePathSet].map((x) => `${x}\n`).join("")
         fs.writeFileSync(projectIgnoreConfigPath, ignoreConfigStr)
         Log.info("Updated file: ", projectIgnoreConfigPath, ignoreConfigStr)
 
@@ -54,10 +39,7 @@ class Plugin implements BasePluginType {
         Log.info("Updated file: ", projectConfigPath, configObject)
 
         //开始运行检查
-        const cmd = `${path.join(options.commandArgs.codePath, "node_modules/.bin/prettier")} --check ${path.join(
-            options.commandArgs.codePath,
-            "/**/*"
-        )} --no-editorconfig`
+        const cmd = `${path.join(options.commandArgs.codePath, "node_modules/.bin/prettier")} --check ${path.join(options.commandArgs.codePath, "/**/*")} --no-editorconfig`
         Log.info("Executing command: ", cmd)
         const execResult = shell.exec(cmd, { silent: false })
 

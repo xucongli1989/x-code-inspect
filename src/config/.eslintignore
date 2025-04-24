@@ -1,5 +1,5 @@
-**/node_modules/**
-**/dist/**
-**/build/**
-**/.ares/**
-lib/**
+/*
+!/src/
+!/*.{js,ts,json,mjs}
+**/.eslintignore
+**/.prettierignore

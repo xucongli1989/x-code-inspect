@@ -43,22 +43,9 @@ class Plugin implements BasePluginType {
         const configPath = path.resolve(options.commandArgs.packagePath, "dist/config/.eslintrc.json")
         const ignoreConfigPath = path.resolve(options.commandArgs.packagePath, "dist/config/.eslintignore")
         const configObject = JSON.parse(fs.readFileSync(configPath).toString())
-        const ignoreConfig = fs.readFileSync(ignoreConfigPath).toString() + "\n"
+        const ignoreConfigStr = fs.readFileSync(ignoreConfigPath).toString() + "\n"
 
         //生成配置文件（eslintignore）
-        const ignorePathSet: Set<string> = new Set()
-        if (options.commandArgs.checkDir) {
-            ignorePathSet.add(`/*`) //先要排除所有
-            options.commandArgs.checkDir.split(",").forEach((x) => {
-                ignorePathSet.add(`!/${x}`) //基于上面排除的范围内，再剔除
-            })
-        }
-        if (options.commandArgs.ignoreCheckDir) {
-            options.commandArgs.ignoreCheckDir.split(",").forEach((x) => {
-                ignorePathSet.add(x)
-            })
-        }
-        const ignoreConfigStr = ignoreConfig + [...ignorePathSet].map((x) => `${x}\n`).join("")
         fs.writeFileSync(projectIgnoreConfigPath, ignoreConfigStr)
         Log.info("Updated file: ", projectIgnoreConfigPath, ignoreConfigStr)
 
@@ -77,7 +64,7 @@ class Plugin implements BasePluginType {
         Log.info("Updated file: ", projectConfigPath)
 
         //开始运行检查
-        const checkCmd = `${path.join(options.commandArgs.codePath, "node_modules/.bin/eslint")} ${options.commandArgs.codePath} --ext .js,.jsx,.ts,.tsx --max-warnings 0 `
+        const checkCmd = `${path.join(options.commandArgs.codePath, "node_modules/.bin/eslint")} ${options.commandArgs.codePath} --ext .js,.jsx,.ts,.tsx,.vue,.mjs,.cjs --max-warnings 0 `
         Log.info("Executing command: ", checkCmd)
         const execResult = shell.exec(checkCmd, { silent: false })
         const outStr: string = execResult.stdout

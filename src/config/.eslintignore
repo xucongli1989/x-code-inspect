@@ -4,5 +4,7 @@
 !/*.ts
 !/*.mjs
 !/*.cjs
+!/package.json
+!/tsconfig.json
 **/.eslintignore
 **/.prettierignore

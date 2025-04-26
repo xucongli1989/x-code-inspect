@@ -1,117 +1,117 @@
 {
-  "name": "x-code-inspect",
-  "version": "1.11.1",
-  "description": "This is a package for checking JavaScript projects. You only need to install this package to use detection tools such as ESLint. Most importantly, you don't need to do extra ESLint configuration, just use the built-in default configuration.",
-  "main": "dist/index.js",
-  "scripts": {
-    "dist": "x-package-version-strict-check && webpack  --mode=production --progress && tsc --emitDeclarationOnly && cpy npm-source dist --parents",
-    "test": "node dist/index.js",
-    "cli": "npm unlink x-code-inspect && npm link x-code-inspect",
-    "check": "x-code-inspect",
-    "release": "standard-version && git push && git push --tags",
-    "ct": "git add -A && git-cz -a"
-  },
-  "bin": {
-    "x-code-inspect": "./bin/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xucongli1989/x-code-inspect.git"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+    "name": "x-code-inspect",
+    "version": "1.11.1",
+    "description": "This is a package for checking JavaScript projects. You only need to install this package to use detection tools such as ESLint. Most importantly, you don't need to do extra ESLint configuration, just use the built-in default configuration.",
+    "main": "dist/index.js",
+    "scripts": {
+        "dist": "x-package-version-strict-check && webpack  --mode=production --progress && tsc --emitDeclarationOnly && cpy npm-source dist --parents",
+        "test": "node dist/index.js",
+        "cli": "npm unlink x-code-inspect && npm link x-code-inspect",
+        "check": "x-code-inspect",
+        "release": "standard-version && git push && git push --tags",
+        "ct": "git add -A && git-cz -a"
+    },
+    "bin": {
+        "x-code-inspect": "./bin/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xucongli1989/x-code-inspect.git"
+    },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
+    "keywords": [
+        "code",
+        "check",
+        "eslint",
+        "javascript"
+    ],
+    "author": "XCL",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/xucongli1989/x-code-inspect/issues"
+    },
+    "homepage": "https://github.com/xucongli1989/x-code-inspect",
+    "dependencies": {
+        "@typescript-eslint/eslint-plugin": "4.8.2",
+        "@typescript-eslint/parser": "4.8.2",
+        "ansicolor": "1.1.93",
+        "art-template": "4.13.2",
+        "as-table": "1.0.55",
+        "babel-eslint": "10.1.0",
+        "caller-path": "3.0.0",
+        "cfonts": "2.8.6",
+        "cheerio": "1.0.0-rc.3",
+        "commander": "6.2.0",
+        "cpy-cli": "3.1.1",
+        "del": "6.0.0",
+        "eslint": "7.14.0",
+        "eslint-config-airbnb": "18.2.1",
+        "eslint-config-airbnb-typescript": "12.0.0",
+        "eslint-plugin-import": "2.22.1",
+        "eslint-plugin-jsx-a11y": "6.4.1",
+        "eslint-plugin-react": "7.21.5",
+        "eslint-plugin-react-hooks": "4.2.0",
+        "make-dir": "3.1.0",
+        "ololog": "1.1.164",
+        "prettier": "2.2.0",
+        "prettyoutput": "1.2.0",
+        "shelljs": "0.8.4",
+        "sync-request": "6.1.0",
+        "typescript": "4.1.2",
+        "update-notifier": "5.0.1",
+        "x-js-kit": "4.17.1",
+        "x-package-version-strict-check": "1.7.0"
+    },
+    "devDependencies": {
+        "@babel/cli": "7.12.8",
+        "@babel/core": "7.12.9",
+        "@babel/plugin-proposal-class-properties": "7.12.1",
+        "@babel/plugin-proposal-object-rest-spread": "7.12.1",
+        "@babel/plugin-transform-async-to-generator": "7.12.1",
+        "@babel/preset-env": "7.12.7",
+        "@babel/preset-typescript": "7.12.7",
+        "@types/cheerio": "0.22.22",
+        "@types/commander": "2.12.2",
+        "@types/eslint": "7.2.5",
+        "@types/prettier": "2.1.5",
+        "@types/shelljs": "0.8.8",
+        "@types/update-notifier": "5.0.0",
+        "art-template-loader": "1.4.3",
+        "babel-loader": "8.2.1",
+        "clean-webpack-plugin": "3.0.0",
+        "commitizen": "4.2.2",
+        "event-hooks-webpack-plugin": "2.2.0",
+        "standard-version": "9.0.0",
+        "webpack": "4.42.1",
+        "webpack-cli": "4.2.0",
+        "webpack-node-externals": "2.5.2",
+        "react": "17.0.1"
+    },
+    "peerDependencies": {
+        "@typescript-eslint/eslint-plugin": ">=4.8.2",
+        "@typescript-eslint/parser": ">=4.8.2",
+        "babel-eslint": ">=10.1.0",
+        "eslint": ">=7.14.0",
+        "eslint-config-airbnb": ">=18.2.1",
+        "eslint-config-airbnb-typescript": ">=12.0.0",
+        "eslint-plugin-import": ">=2.22.1",
+        "eslint-plugin-jsx-a11y": ">=6.4.1",
+        "eslint-plugin-react": ">=7.21.5",
+        "eslint-plugin-react-hooks": ">=4.2.0",
+        "prettier": ">=2.2.0",
+        "typescript": ">=4.1.2",
+        "x-package-version-strict-check": ">=1.7.0"
+    },
+    "files": [
+        "dist",
+        "bin",
+        "doc"
+    ],
+    "engines": {
+        "node": "16.16.0"
     }
-  },
-  "keywords": [
-    "code",
-    "check",
-    "eslint",
-    "javascript"
-  ],
-  "author": "XCL",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/xucongli1989/x-code-inspect/issues"
-  },
-  "homepage": "https://github.com/xucongli1989/x-code-inspect",
-  "dependencies": {
-    "@typescript-eslint/eslint-plugin": "4.8.2",
-    "@typescript-eslint/parser": "4.8.2",
-    "ansicolor": "1.1.93",
-    "art-template": "4.13.2",
-    "as-table": "1.0.55",
-    "babel-eslint": "10.1.0",
-    "caller-path": "3.0.0",
-    "cfonts": "2.8.6",
-    "cheerio": "1.0.0-rc.3",
-    "commander": "6.2.0",
-    "cpy-cli": "3.1.1",
-    "del": "6.0.0",
-    "eslint": "7.14.0",
-    "eslint-config-airbnb": "18.2.1",
-    "eslint-config-airbnb-typescript": "12.0.0",
-    "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jsx-a11y": "6.4.1",
-    "eslint-plugin-react": "7.21.5",
-    "eslint-plugin-react-hooks": "4.2.0",
-    "make-dir": "3.1.0",
-    "ololog": "1.1.164",
-    "prettier": "2.2.0",
-    "prettyoutput": "1.2.0",
-    "shelljs": "0.8.4",
-    "sync-request": "6.1.0",
-    "typescript": "4.1.2",
-    "update-notifier": "5.0.1",
-    "x-js-kit": "4.17.1",
-    "x-package-version-strict-check": "1.7.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "7.12.8",
-    "@babel/core": "7.12.9",
-    "@babel/plugin-proposal-class-properties": "7.12.1",
-    "@babel/plugin-proposal-object-rest-spread": "7.12.1",
-    "@babel/plugin-transform-async-to-generator": "7.12.1",
-    "@babel/preset-env": "7.12.7",
-    "@babel/preset-typescript": "7.12.7",
-    "@types/cheerio": "0.22.22",
-    "@types/commander": "2.12.2",
-    "@types/eslint": "7.2.5",
-    "@types/prettier": "2.1.5",
-    "@types/shelljs": "0.8.8",
-    "@types/update-notifier": "5.0.0",
-    "art-template-loader": "1.4.3",
-    "babel-loader": "8.2.1",
-    "clean-webpack-plugin": "3.0.0",
-    "commitizen": "4.2.2",
-    "event-hooks-webpack-plugin": "2.2.0",
-    "standard-version": "9.0.0",
-    "webpack": "4.42.1",
-    "webpack-cli": "4.2.0",
-    "webpack-node-externals": "2.5.2",
-    "react": "17.0.1"
-  },
-  "peerDependencies": {
-    "@typescript-eslint/eslint-plugin": ">=4.8.2",
-    "@typescript-eslint/parser": ">=4.8.2",
-    "babel-eslint": ">=10.1.0",
-    "eslint": ">=7.14.0",
-    "eslint-config-airbnb": ">=18.2.1",
-    "eslint-config-airbnb-typescript": ">=12.0.0",
-    "eslint-plugin-import": ">=2.22.1",
-    "eslint-plugin-jsx-a11y": ">=6.4.1",
-    "eslint-plugin-react": ">=7.21.5",
-    "eslint-plugin-react-hooks": ">=4.2.0",
-    "prettier": ">=2.2.0",
-    "typescript": ">=4.1.2",
-    "x-package-version-strict-check": ">=1.7.0"
-  },
-  "files": [
-    "dist",
-    "bin",
-    "doc"
-  ],
-  "engines": {
-    "node": "16.16.0"
-  }
 }

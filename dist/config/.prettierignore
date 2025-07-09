@@ -8,3 +8,4 @@
 !/tsconfig.json
 **/.eslintignore
 **/.prettierignore
+**/*.svg

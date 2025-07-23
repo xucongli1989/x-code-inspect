@@ -1,6 +1,7 @@
 import shell from "shelljs"
 import path from "path"
 import fs from "fs"
+import del from "del"
 import { BasePluginType, BasePluginOptionsType, CheckerResultType, CheckerMessageTypeEnum } from "../../type"
 import * as Log from "../../log"
 
@@ -16,13 +17,18 @@ class Plugin implements BasePluginType {
         msgType: CheckerMessageTypeEnum.INFO
     } as CheckerResultType
     run(options: BasePluginOptionsType) {
+        //删除项目中已有的配置文件
+        del.sync(path.resolve(options.commandArgs.codePath, ".prettierrc.js"))
+        del.sync(path.resolve(options.commandArgs.codePath, ".prettierrc.json"))
+        del.sync(path.resolve(options.commandArgs.codePath, ".prettierrc.yaml"))
+        del.sync(path.resolve(options.commandArgs.codePath, ".prettierrc.yml"))
+        del.sync(path.resolve(options.commandArgs.codePath, ".prettierrc"))
+        del.sync(path.resolve(options.commandArgs.codePath, ".prettierignore"))
+        Log.info("Clear project's config file about Prettier!")
+
         //项目中已有的配置文件
         const projectConfigPath = path.resolve(options.commandArgs.codePath, ".prettierrc.json")
         const projectIgnoreConfigPath = path.resolve(options.commandArgs.codePath, ".prettierignore")
-        //清空项目中的已有配置文件
-        Log.info("Clear project's config file about Prettier!")
-        fs.writeFileSync(projectConfigPath, "")
-        fs.writeFileSync(projectIgnoreConfigPath, "")
 
         //默认配置
         const configPath = path.resolve(options.commandArgs.packagePath, "dist/config/.prettierrc.json")

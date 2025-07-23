@@ -22,7 +22,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "bc5b7e95a91c4ffff6e7";
+/******/ 	var hotCurrentHash = "4ba41864847c898dbd9f";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -768,13 +768,13 @@ module.exports = require("fs");
 /* 2 */
 /***/ (function(module, exports) {
 
-module.exports = require("shelljs");
+module.exports = require("del");
 
 /***/ }),
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = require("del");
+module.exports = require("shelljs");
 
 /***/ }),
 /* 4 */
@@ -874,7 +874,7 @@ var external_update_notifier_ = __webpack_require__(10);
 var external_update_notifier_default = /*#__PURE__*/__webpack_require__.n(external_update_notifier_);
 
 // EXTERNAL MODULE: external "shelljs"
-var external_shelljs_ = __webpack_require__(2);
+var external_shelljs_ = __webpack_require__(3);
 var external_shelljs_default = /*#__PURE__*/__webpack_require__.n(external_shelljs_);
 
 // CONCATENATED MODULE: ./src/type.ts
@@ -991,7 +991,7 @@ var package_version_Plugin = /*#__PURE__*/function () {
 
 var PackageVersionPlugin = new package_version_Plugin();
 // EXTERNAL MODULE: external "del"
-var external_del_ = __webpack_require__(3);
+var external_del_ = __webpack_require__(2);
 var external_del_default = /*#__PURE__*/__webpack_require__.n(external_del_);
 
 // CONCATENATED MODULE: ./src/plugins/eslint/index.ts
@@ -1130,6 +1130,7 @@ function prettier_defineProperty(obj, key, value) { if (key in obj) { Object.def
 
 
 
+
 var prettier_Plugin = /*#__PURE__*/function () {
   function Plugin() {
     prettier_classCallCheck(this, Plugin);
@@ -1148,13 +1149,17 @@ var prettier_Plugin = /*#__PURE__*/function () {
   prettier_createClass(Plugin, [{
     key: "run",
     value: function run(options) {
-      //项目中已有的配置文件
-      var projectConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".prettierrc.json");
-      var projectIgnoreConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".prettierignore"); //清空项目中的已有配置文件
+      //删除项目中已有的配置文件
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".prettierrc.js"));
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".prettierrc.json"));
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".prettierrc.yaml"));
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".prettierrc.yml"));
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".prettierrc"));
+      external_del_default.a.sync(external_path_default.a.resolve(options.commandArgs.codePath, ".prettierignore"));
+      info("Clear project's config file about Prettier!"); //项目中已有的配置文件
 
-      info("Clear project's config file about Prettier!");
-      external_fs_default.a.writeFileSync(projectConfigPath, "");
-      external_fs_default.a.writeFileSync(projectIgnoreConfigPath, ""); //默认配置
+      var projectConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".prettierrc.json");
+      var projectIgnoreConfigPath = external_path_default.a.resolve(options.commandArgs.codePath, ".prettierignore"); //默认配置
 
       var configPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/.prettierrc.json");
       var ignoreConfigPath = external_path_default.a.resolve(options.commandArgs.packagePath, "dist/config/.prettierignore");
